@@ -1,0 +1,175 @@
+{% extends './base.html' %}
+<!-- Cache AD List View page for REFID Application-->
+{% block title %}
+Cache RH
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <form method="get" action="{% url 'refid-cachead-list-view' %}" style="width:100%;font-size:75%;">
+
+        <!-- Search Fields -->
+        <div class="card border border-dark p-3 mb-3">
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="form-label mb-1">Nom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">Prénom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">N°National</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">User Login</div>
+                </div>
+            </div>
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_nom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_prenom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_niss }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_userid }}</div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-center" value="Recherche">
+        </div>
+
+
+    </form>
+
+    <hr>
+    <!-- Input Search Outside -->
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="input-group input-group-sm">
+                <input class="form-control" type="search" id="search" placeholder="Global search ..."
+                       aria-label="Search">
+                <a href="{% url 'refid-cachead-list-view' %}" class="btn btn-secondary btn-sm"><i
+                        class="fas fa-sync-alt"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <table id="tableCacheADList" class="table table-hover table-striped display compact nowrap"
+           style="width:100%;font-size:75%;">
+        <thead class="table-primary">
+        <tr>
+            <th>samaccountname</th>
+            <th>sn, givenname</th>
+<!--            <th>givenname</th>-->
+            <th>company</th>
+            <th>physicaldeliveryofficename</th>
+            <th>businesscategory</th>
+            <th>employeetype</th>
+<!--            <th>department</th>-->
+<!--&lt;!&ndash;            <th>preferredlanguage</th>&ndash;&gt;-->
+            <th>employeenumber</th>
+            <th>extensionattribute1</th>
+<!--            <th>extensionattribute2</th>-->
+<!--            <th>extensionattribute10</th>-->
+<!--            <th>extensionattribute11</th>-->
+<!--            <th>telephonenumber</th>-->
+<!--            <th>pager</th>-->
+<!--            <th>description</th>-->
+            <th>accountexpires</th>
+            <th>enabled</th>
+<!--            <th>name</th>-->
+<!--            <th>cn</th>-->
+<!--            <th>userprincipalname</th>-->
+<!--            <th>displayname</th>-->
+<!--            <th>employeeid</th>-->
+<!--            <th>info</th>-->
+<!--            <th>extensionattribute3</th>-->
+<!--            <th>businessroles</th>-->
+<!--            <th>homedirectory</th>-->
+<!--            <th>homedrive</th>-->
+<!--            <th>distinguishedname</th>-->
+<!--            <th>networkdomainid</th>-->
+<!--            <th>objectguid</th>-->
+<!--            <th>objectsid</th>-->
+            <th>whencreated</th>
+            <th>whenchanged</th>
+<!--            <th>lastlogontimestamp</th>-->
+<!--            <th>lastlogon</th>-->
+<!--            <th>pwdlastset</th>-->
+<!--            <th>badpasswordtime</th>-->
+<!--            <th>useraccountcontrol</th>-->
+<!--            <th>mail</th>-->
+<!--            <th>msexchwhenmailboxcreated</th>-->
+            <th>rfidatesync</th>
+<!--            <th>messages</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        {% if users %}
+        {% for user in users %}
+        <tr>
+            <td><span class="fa fa-user-md"></span>&nbsp;<a href="/refid/cachead-detail-view/{{user.samaccountname }}">{{ user.samaccountname }}</a></td>
+            <td>{{ user.sn }}, {{ user.givenname }}</td>
+<!--            <td>{ user.givenname }}</td>-->
+            <td>{{ user.company }}</td>
+            <td>{{ user.physicaldeliveryofficename }}</td>
+            <td>{{ user.businesscategory }}</td>
+            <td>{{ user.employeetype }}</td>
+<!--            <td>{{ user.department }}</td>-->
+<!--            <td>{{ user.preferredlanguage }}</td>-->
+            <td>{{ user.employeenumber }}</td>
+            <td>{{ user.extensionattribute1 }}</td>
+<!--            <td>{{ user.extensionattribute2 }}</td>-->
+<!--            <td>{{ user.extensionattribute10 }}</td>-->
+<!--            <td>{{ user.extensionattribute11 }}</td>-->
+<!--            <td>{{ user.telephonenumber }}</td>-->
+<!--            <td>{{ user.pager }}</td>-->
+<!--            <td>{{ user.description }}</td>-->
+            <td>{{ user.accountexpires | slice:":10" }}</td>
+            <td>{{ user.enabled }}</td>
+<!--            <td>{{ user.name }}</td>-->
+<!--            <td>{{ user.cn }}</td>-->
+<!--            <td>{{ user.userprincipalname }}</td>-->
+<!--            <td>{{ user.displayname }}</td>-->
+<!--            <td>{{ user.employeeid }}</td>-->
+<!--            <td>{{ user.info }}</td>-->
+<!--            <td>{{ user.extensionattribute3 }}</td>-->
+<!--            <td>{{ user.businessroles }}</td>-->
+<!--            <td>{{ user.homedirectory }}</td>-->
+<!--            <td>{{ user.homedrive }}</td>-->
+<!--            <td>{{ user.distinguishedname }}</td>-->
+<!--            <td>{{ user.networkdomainid }}</td>-->
+<!--            <td>{{ user.objectguid }}</td>-->
+<!--            <td>{{ user.objectsid }}</td>-->
+            <td>{{ user.whencreated | slice:":10" }}</td>
+            <td>{{ user.whenchanged | slice:":10" }}</td>
+<!--            <td>{{ user.lastlogontimestamp }}</td>-->
+<!--            <td>{{ user.lastlogon }}</td>-->
+<!--            <td>{{ user.pwdlastset }}</td>-->
+<!--            <td>{{ user.badpasswordtime }}</td>-->
+<!--            <td>{{ user.useraccountcontrol }}</td>-->
+<!--            <td>{{ user.mail }}</td>-->
+<!--            <td>{{ user.msexchwhenmailboxcreated }}</td>-->
+            <td>{{ user.rfidatesync | slice:":10" }}</td>
+<!--            <td>{{ user.messages }}</td>-->
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>No user are available.</p>
+        {% endif %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

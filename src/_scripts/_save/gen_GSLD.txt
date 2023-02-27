@@ -1,0 +1,91 @@
+def injectRegleAd(self):
+    self.error = 0
+    self.txterror = ''
+    RefidGestionException.toException()
+    try:
+        groupe = {}
+
+        self.db = ConnectionDB.getConnection(self.typedb, self.DBLA)
+
+        # 1. lecture du fichier groupes qui contient les distinguishdname
+        #   provevannt du document d'analyse
+        #   on met en formet et on regarde si on trouve une conresponse dans la table ref_iop_rad
+        with open("d:/web/intranet/refidv1/classes/DAO/groupes.csv", "r") as handle:
+            for data in csv.reader(handle, delimiter=";"):
+                tmp = data[0].split(";")
+                # on r�cupere les �l�ments ligne par ligne et on cr�e un tableau
+                tmp = Tool.decode_data(tmp)
+                infogroupe = tmp[0].upper()
+                infogroupe = infogroupe.replace("'", "''").strip().replace(" ", "")
+                self.db.Exec_Query_SQL("select distinct upper(DISTINGUISHEDNAME),id from refid_iop_refadgroups where upper(replace(DISTINGUISHEDNAME,' ',''))='" + infogroupe + "'")
+                while self.db.Fetch():
+                    groupe[infogroupe] = self.db.Get_Field("id")
+
+        '''
+        # on recup�re la liste des institions d�finie dans la db refid
+        hos = {}
+        self.db.Exec_Query_SQL("select upper(lib_fr) as lib,idinstitution from refid_institution")
+        while self.db.Fetch():
+            hos[self.db.Get_Field("lib")] = self.db.Get_Field("idinstitution")
+
+        # on recup�re les type d'emmploy�s dans la db refid
+        type = {}
+        self.db.Exec_Query_SQL("select upper(lib_fr) as lib,id from refid_employee_type")
+        while self.db.Fetch():
+            type[self.db.Get_Field("lib")] = self.db.Get_Field("id")
+
+        # on recup�re l'ensemble des sites, un site est toujours associ� � une institution
+        site = {}
+        self.db.Exec_Query_SQL("select idsite, upper(lib_fr) as lib,idinstitution_fk from refid_site")
+        while self.db.Fetch():
+            site[self.db.Get_Field("idinstitution_fk")][self.db.Get_Field("lib")] = self.db.Get_Field("idsite")
+        '''
+
+        hos = {
+            "CHU-BRUGMANN": "CHU-BRUGMANN",
+            "HUDERF": "HUDERF",
+            "BRUSTP": "BRUSTP"
+        }
+
+        site = {
+            "CHU-BRUGMANN": {"HORTA": "HORTA", "BRIEN": "BRIEN", "ASTRID": "ASTRID"},
+            "HUDERF": {"HORTA": "HORTA"},
+            "BRUSTP": {"HORTA": "HORTA", "BRIEN": "BRIEN", "ASTRID": "ASTRID"}
+        }
+
+        type = {
+            "ADMINISTRATIF": "ADMINISTRATIF",
+            "MEDICAL": "MEDICAL",
+            "NURSING": "NURSING",
+            "PARAMEDICAL": "PARAMEDICAL",
+            "TECHNIQUE": "TECHNIQUE",
+            "OUVRIER": "OUVRIER",
+            "OTHER": "OTHER",
+            "UNKNOWN": "UNKNOWN"
+        }
+
+        self.db.Exec_Query_SQL("delete from refid_iop
+    $i = 1
+    with open("d:/web/intranet/refidv1/classes/DAO/rules.csv", "r") as handle:
+        for data in handle:
+            tmp = data.split(";")
+            keyhopt = tmp[0].upper()  # institution
+            keysite = tmp[1].upper()  # site
+            keytype = tmp[2].upper()  # employeetype
+            distinguishdname = tmp[4].upper()  # distinguishdname
+            distinguishdname = distinguishdname.replace("'", "''").strip().replace(" ", "")
+            print(keyhopt, keysite, keytype, distinguishdname)
+            # on stocke la regl�e et le groupe associ� dans la table apr�s avoir r�cup�rer les identifiants li�s
+            # exemple Chu-BRUGMANN ID 32 dans la table refid_institutionn
+            self.db.Exec_Query(
+                "insert", "refid_iop_rule_attribution_with_key",
+                {"idrule": i, "institution": hos[keyhopt],
+                 "site": site[hos[keyhopt]][keysite], "employeetype": type[keytype],
+                 "id_groupe": groupe[distinguishdname]})
+            i += 1
+
+except Exception as e:
+    self.error = 1
+    self.txterror = str(e)
+
+RefidGestionException.Stop()

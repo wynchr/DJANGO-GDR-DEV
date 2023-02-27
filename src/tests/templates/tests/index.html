@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+<!-- TEST page for TEST Application-->
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">TESTS - Tests divers (Index)</p></h1>
+    </div>
+    <p>Liste des Tests</p>
+
+    <div class="list-group">
+
+        <a href="{% url 'test-signup' %}" class="list-group-item list-group-item-action list-group-item-danger">Test
+            Signup form</a>
+        <br>
+        <a href="{% url 'tests-testhtml5' %}" class="list-group-item list-group-item-action list-group-item-primary">Test
+            HTML 5</a>
+        <br>
+        <a href="{% url 'tests-testbt5' %}" class="list-group-item list-group-item-action list-group-item-secondary">Test
+            BootStrap 5</a>
+        <a href="{% url 'tests-testbt5form' %}"
+           class="list-group-item list-group-item-action list-group-item-secondary">Test BootStrap 5 - Form</a>
+        <a href="{% url 'tests-testbt5grid' %}"
+           class="list-group-item list-group-item-action list-group-item-secondary">Test BootStrap 5 - Grid</a>
+        <br>
+        <a href="{% url 'tests-testtabs' %}" class="list-group-item list-group-item-action list-group-item-primary">Test
+            Tabs</a>
+        <br>
+        <a href="{% url 'tests-timeout' %}" class="list-group-item list-group-item-action list-group-item-primary">Test
+            Timeout</a>
+        <br>
+        <a href="{% url 'tests-runscript' %}" class="list-group-item list-group-item-action list-group-item-primary">Test
+            runscript</a>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

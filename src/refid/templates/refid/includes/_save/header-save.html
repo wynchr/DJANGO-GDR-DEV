@@ -1,0 +1,91 @@
+{% load static %}
+<!-- HEADER INCLUDE page for REFID Application-->
+<header>
+    <nav id="mainNavbar" class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/logo.png' %}" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+            </a>
+            <a class="navbar-brand" href="/">GDR-REFID</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="leftNavbar">
+                <ul class="navbar-nav me-auto">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-application' %}">Application</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-provinitad-list-view' %}">RepriseInit</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-monitor-list-view' %}">Monitoring</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-monitor-compare' %}">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-monitor-log' %}">Log</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="middleNavbar">
+                <ul class="navbar-nav me-auto">
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-todo' %}">ToDo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-readme' %}">ReadME</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-about' %}">About</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="rightNavbar">
+                <ul class="navbar-nav me-auto">
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gdr-admin">Administration</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="logout" href="/logout" class="btn btn-danger btn-sm mt-2"
+                           style="margin-left: 10px; border-radius:50%" title="Logout">
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        {% if request.user.is_superuser %}
+                        <a class="nav-link" style="color: #0dcaf0">[ADMIN:{{ request.user|upper }}]</a>
+                        {% elif request.user.is_staff %}
+                        <a class="nav-link" style="color: #0dcaf0">[USER:{{ request.user|upper }}]</a>
+                        {% else %}
+                        <a class="nav-link" style="color: #0dcaf0">[user:{{ request.user|upper }}]</a>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+

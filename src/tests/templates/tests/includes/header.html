@@ -1,0 +1,32 @@
+{% load static %}
+
+<nav id="mainNavbar" class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/logo.png' %}" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+        </a>
+        <a class="navbar-brand" href="/">TESTS</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="leftNavbar">
+            <ul class="navbar-nav me-auto">
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="rightNavbar">
+            <ul class="navbar-nav me-auto">
+            </ul>
+
+            <a href="{% url 'gdr-index' %}" class="btn btn-danger">Home</a>
+
+        </div>
+
+
+    </div>
+</nav>
+
+

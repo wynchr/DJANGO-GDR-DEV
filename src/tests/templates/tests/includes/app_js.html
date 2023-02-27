@@ -1,0 +1,89 @@
+<script type="text/javascript" language="javascript">
+    console.log("Hello");
+</script>
+<script type="text/javascript" language="javascript">
+    var $j=jQuery.noConflict();
+</script>
+
+<script type="text/javascript" language="javascript">
+    jQuery(function() {
+       sizeContainer();
+    });
+    function sizeContainer() {
+        var sizeWindow = jQuery(window).height();
+        console.log("sizeWindow=" + sizeWindow);
+        
+        var sizeMainNavBar = $j("#mainNavbar").height();
+        console.log("sizeMainNavBar=" + sizeMainNavBar);
+        
+        var diff = $j(window).height()-$j("#mainNavbar").height();
+        console.log("diff=" + diff);
+        
+        //var sizeMainContainer = sizeWindow-sizeMainNavBar-400;
+        var sizeMainContainer = sizeWindow-sizeMainNavBar;
+        console.log("MainContainer=" + sizeMainContainer);
+        
+        //$j("#mainContainer").height(sizeMainContainer);
+        //$j("#mainContainer").height(700);
+        
+    }
+    // Automatic Logout
+    //var myLogOut = setInterval(function(){ setLogout() }, 900000); // every 15' ask for logout
+     
+    function setLogout() {
+      var x = document.body;
+      x.style.backgroundColor = x.style.backgroundColor == "white" ? "black" : "white";
+      clearInterval(myLogOut);
+      $j("#logout").click();
+      //top.location.replace("logon.csp"); 
+    }
+    
+    // TAB Navigation by fonction
+    function openTab(evt,fonction) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("tab");
+          for (i = 0; i < x.length; i++) {
+              x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" w3-blue", "");
+          }
+          document.getElementById(fonction).style.display = "block";
+          evt.currentTarget.className += " w3-blue";
+    }
+    // Hide  at start
+    //$j("#Hbar").hide();
+    //$j("#footer").hide();
+</script>
+     
+<script type="text/javascript" language="javascript">
+    $j(function() {
+        // Alt-H go menu
+        var isCtrl = false;
+        $j(document).keyup(function (e) {
+            if(e.which == 17) isCtrl=false;
+            }).keydown(function (e) {
+                if(e.which == 18) isCtrl=true;
+                if(e.which == 72 && isCtrl == true) {
+                    $j("#home").click();
+                return false;
+            }
+        });
+ 
+        // Alt-X go Logout
+        var isCtrl = false;
+        $j(document).keyup(function (e) {
+            if(e.which == 17) isCtrl=false;
+            }).keydown(function (e) {
+                if(e.which == 18) isCtrl=true;
+                if(e.which == 88 && isCtrl == true) {
+                    $j("#logout").click();
+                return false;
+            }
+        });
+ 
+    });
+</script>
+     
+

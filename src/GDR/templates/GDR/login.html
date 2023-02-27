@@ -1,0 +1,35 @@
+{% extends './base.html' %}
+{% load static %}
+
+<!-- Login Page-->
+<!-- Title on tab-->
+{% block title %} Login {% endblock title %}
+
+<!-- Page content-->
+{% block content %}
+<div class="container mt-5" id="card-login">
+    <br><br>
+    <div class="card p-3 login-border">
+        <span class="text-center mt-3 text-pulse"><i style="color: dodgerblue;" class="fas fa-user-lock"></i>&nbsp;&nbsp;<strong>LOGIN</strong></span>
+        <form method="POST" action="/login_user" autocomplete="off">
+            {% csrf_token %}
+           <div class="input-group mb-2 mt-4">
+                <input type="text" class="form-control" name="username" placeholder="Username">
+            </div>
+            <div class="input-group mb-2">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" onclick="myFunction()" type="checkbox" style="float: right;">
+            </div>
+            <div class="d-grid gap-2 mt-3">
+                <input class="btn btn-primary btn-sm btn-s mt-4 mb-3" type="submit" Value="Enter" id="btn-enter">
+            </div>
+        </form>
+        <center class="mt-5 mb-5">
+<!--            <i class="fas fa-globe mt-4 mb-4" style="color: #d3d3d3; font-size: 120px"></i>-->
+            <img src="{% static 'images/logochub.png' %}" alt="Avatar Logo" style="width:500px;" >
+        </center>
+    </div>
+</div>
+{% endblock content %}

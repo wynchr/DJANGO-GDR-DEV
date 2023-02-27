@@ -1,0 +1,132 @@
+{% extends './base.html' %}
+<!-- ProvInitAd List View page for REFID Application -->
+{% block title %}
+Liste utilisateurs
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <form method="get" action="{% url 'refid-provinitad-list-view' %}" style="width:100%;font-size:75%;">
+
+        <!-- Search Fields -->
+        <div class="card border border-dark p-3 mb-3">
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="form-label mb-1">Nom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">Prénom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">N°National</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">User Login</div>
+                </div>
+            </div>
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_nom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_prenom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_niss }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_userid }}</div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-center" value="Recherche">
+        </div>
+
+    </form>
+
+    <hr>
+
+    <!-- Input Search Outside -->
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="input-group input-group-sm">
+                <input class="form-control" type="search" id="search" placeholder="Global search ..."
+                       aria-label="Search">
+                <a href="{% url 'refid-provinitad-list-view' %}" class="btn btn-secondary btn-sm"><i
+                        class="fas fa-sync-alt"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <table id="tableProvadList" class="table table-hover table-striped display compact nowrap"
+           style="width:100%;font-size:75%;">
+        <thead class="table-primary">
+        <tr>
+            <th>User Login</th>
+            <th>N°Document</th>
+            <th>N°Matricule</th>
+            <th>Nom</th>
+            <!--            <th>Prénom</th>-->
+            <th>Hôpital</th>
+            <th>Site</th>
+            <!--            <th>Department</th>-->
+            <th>Catégorie</th>
+            <th>Type</th>
+            <th>Expiration</th>
+            <th>Etat</th>
+            <th>DateUpdate</th>
+            <!--            <th>AD</th>-->
+            <!--            <th>EXCHANGE</th>-->
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if users %}
+        {% for user in users %}
+        <tr>
+            <td><a href="/refid/provinitad-update-view/{{ user.samaccountname}}"  class="fa fa-user-md" title="Edit User" ></a> {{ user.samaccountname }}</td>
+
+            <td>{{ user.employeenumber }}</td>
+            <td>{{ user.extensionattribute1 }}</td>
+<!--            <td>{ user.sn }}, {{ user.givenname }}</td>-->
+            <td>{{ user.usualsn }}, {{ user.usualgivenname }}</td>
+            <!--            <td>{ user.givenname }}</td>-->
+            <td>{{ user.company }}</td>
+            <td>{{ user.physicaldeliveryofficename }}</td>
+            <!--            <td>{ user.department }}</td>-->
+            <td>{{ user.businesscategory }}</td>
+            <td>{{ user.employeetype }}</td>
+            <td>{{ user.accountexpires | slice:":10"}}</td>
+            <td>{{ user.enabled }}</td>
+            <td>{{ user.dateupd }}</td>
+            <!--            <td>{ user.flagsyncad }}</td>-->
+            <!--            <td>{ user.flagsyncexchange }}</td>-->
+            <td>
+                <a href="/refid/refid_info_pdf/{{ user.samaccountname}}" class="fa fas fa-id-card" title="Print PDF for the user"></a>
+                <a href="/refid/refid_info_pdf/{{ user.samaccountname}}" class="fa fas fas fa-key" title="Reset Password"></a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>No user are available.</p>
+        {% endif %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Create Button Fields -->
+    <div class="btn-group">
+        <a href="{% url 'refid-provinitad-create-view' %}" class="btn btn-danger">Création d'un utilisateur</a>
+    </div>
+
+</div>
+
+{% endblock %}

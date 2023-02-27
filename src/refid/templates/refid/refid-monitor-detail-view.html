@@ -1,0 +1,298 @@
+{% extends './base.html' %}
+<!-- Monitor Detail View page for REFID Application-->
+{% block title %}
+Monitor Detail
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <h3>IDENTITY : {{ user.sn }}, {{ user.givenname }} ({{ user.samaccountname }} @ {{ user.company }})</h3>
+
+    <h5>HUMAN RESOURCE PROFILE - LEGAL IDENTITY INFORMATION</h5>
+    <table class="table table-striped table-hover compact nowrap" style="width:100%;font-size:90%;">
+        <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>AD Name</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>Nom</td>
+            <td>sn</td>
+            <td>{{ user.sn }}</td>
+        </tr>
+        <tr>
+            <td>Prénom</td>
+            <td>givenname</td>
+            <td>{{ user.givenname }}</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>password</td>
+            <td>{{ user.password }}</td>
+        </tr>
+        <tr>
+            <td>Hôpital</td>
+            <td>company</td>
+            <td>{{ user.company }}</td>
+        </tr>
+        <tr>
+            <td>Site</td>
+            <td>physicaldeliveryofficename</td>
+            <td>{{ user.physicaldeliveryofficename }}</td>
+        </tr>
+        <tr>
+            <td>Catégorie</td>
+            <td>businesscategory</td>
+            <td>{{ user.businesscategory }}</td>
+        </tr>
+        <tr>
+            <td>Type d'employé</td>
+            <td>employeetype</td>
+            <td>{{ user.employeetype }}</td>
+        </tr>
+        <tr>
+            <td>Département</td>
+            <td>department</td>
+            <td>{{ user.department }}</td>
+        </tr>
+        <tr>
+            <td>Langue</td>
+            <td>preferredlanguage</td>
+            <td>{{ user.preferredlanguage }}</td>
+        </tr>
+        <tr>
+            <td>NISS/N°PASSPORT</td>
+            <td>employeenumber</td>
+            <td>{{ user.employeenumber }}</td>
+        </tr>
+        <tr>
+            <td>Matricule</td>
+            <td>extensionattribute1</td>
+            <td>{{ user.extensionattribute1 }}</td>
+        </tr>
+        <tr>
+            <td>Mouvement</td>
+            <td>extensionattribute2</td>
+            <td>{{ user.extensionattribute2 }}</td>
+        </tr>
+        <tr>
+            <td>N°INAMI</td>
+            <td>extensionattribute11</td>
+            <td>{{ user.extensionattribute11 }}</td>
+        </tr>
+        <tr>
+            <td>Téléphone</td>
+            <td>telephonenumber</td>
+            <td>{{ user.telephonenumber }}</td>
+        </tr>
+        <tr>
+            <td>Portable/DECT</td>
+            <td>pager</td>
+            <td>{{ user.pager }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+    <h5>NETWORK ACCOUNT INFORMATION</h5>
+    <table class="table table-striped table-hover compact nowrap" style="width:100%;font-size:90%;">
+        <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>AD Name</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>UserID</td>
+            <td>samaccountname</td>
+            <td>{{ user.samaccountname }}</td>
+        </tr>
+        <tr>
+            <td>homedir</td>
+            <td>homedir</td>
+            <td>{{ user.homedir }}</td>
+        </tr>
+        <tr>
+            <td>homedrive</td>
+            <td>homedrive</td>
+            <td>{{ user.homedrive }}</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>description</td>
+            <td>{{ user.description }}</td>
+        </tr>
+        <tr>
+            <td>enableaccountexpires</td>
+            <td>enableaccountexpires</td>
+            <td>{{ user.enableaccountexpires }}</td>
+        </tr>
+        <tr>
+            <td>accountexpires</td>
+            <td>accountexpires</td>
+            <td>{{ user.accountexpires }}</td>
+        </tr>
+        <tr>
+            <td>changepasswordatlogon</td>
+            <td>changepasswordatlogon</td>
+            <td>{{ user.changepasswordatlogon }}</td>
+        </tr>
+        <tr>
+            <td>enabled</td>
+            <td>enabled</td>
+            <td>{{ user.enabled }}</td>
+        </tr>
+        <tr>
+            <td>enablemail</td>
+            <td>enablemail</td>
+            <td>{{ user.enablemail }}</td>
+        </tr>
+        <tr>
+            <td>mail</td>
+            <td>mail</td>
+            <td>{{ user.mail }}</td>
+        </tr>
+        <tr>
+            <td>Groupes AD</td>
+            <td>groups</td>
+            <td>{{ user.groups }}</td>
+        </tr>
+        <tr>
+            <td>Listes de distribution</td>
+            <td>distributionlist</td>
+            <td>{{ user.distributionlist }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <h5>REFID - IDENTY LIFE CYCLE SYSTEM</h5>
+    <table class="table table-striped table-hover compact nowrap" style="width:100%;font-size:90%;">
+        <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>AD Name</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        <tr>
+            <td>Environnement (DEV/PROD)</td>
+            <td>env</td>
+            <td>{{ user.env }}</td>
+        </tr>
+        <tr>
+            <td>Organisation (OSIRIS)</td>
+            <td>org</td>
+            <td>{{ user.org }}</td>
+        </tr>
+        <tr>
+            <td>infoIAM</td>
+            <td>infoIAM</td>
+            <td>{{ user.info }}</td>
+        </tr>
+        <tr>
+            <td>infoREFID</td>
+            <td>infoREFID</td>
+            <td>{{ user.extensionattribute15 }}</td>
+        </tr>
+        <tr>
+            <td>usercre</td>
+            <td>usercre</td>
+            <td>{{ user.usercre }}</td>
+        </tr>
+        <tr>
+            <td>datecre</td>
+            <td>datecre</td>
+            <td>{{ user.datecre }}</td>
+        </tr>
+        <tr>
+            <td>userupd</td>
+            <td>userupd</td>
+            <td>{{ user.userupd }}</td>
+        </tr>
+        <tr>
+            <td>dateupd</td>
+            <td>dateupd</td>
+            <td>{{ user.dateupd }}</td>
+        </tr>
+        <tr>
+            <td>msgrefid</td>
+            <td>msgrefid</td>
+            <td>{{ user.msgrefid }}</td>
+        </tr>
+        <tr>
+            <td>actiontype</td>
+            <td>actiontype</td>
+            <td>{{ user.actiontype }}</td>
+        </tr>
+        <tr>
+            <td>msgdb</td>
+            <td>msgdb</td>
+            <td>{{ user.msgdb }}</td>
+        </tr>
+        <tr>
+            <td>msgad</td>
+            <td>msgad</td>
+            <td>{{ user.msgad }}</td>
+        </tr>
+        <tr>
+            <td>datesyncad</td>
+            <td>datesyncad</td>
+            <td>{{ user.datesyncad }}</td>
+        </tr>
+        <tr>
+            <td>flagsyncad</td>
+            <td>flagsyncad</td>
+            <td>{{ user.flagsyncad }}</td>
+        </tr>
+        <tr>
+            <td>msgexchange</td>
+            <td>msgexchange</td>
+            <td>{{ user.msgexchange }}</td>
+        </tr>
+        <tr>
+            <td>datesyncexchange</td>
+            <td>datesyncexchange</td>
+            <td>{{ user.datesyncexchange }}</td>
+        </tr>
+        <tr>
+            <td>flagsyncexchange</td>
+            <td>flagsyncexchange</td>
+            <td>{{ user.flagsyncexchange }}</td>
+        </tr>
+        <tr>
+            <td>objectsid</td>
+            <td>objectsid</td>
+            <td>{{ user.objectsid }}</td>
+        </tr>
+        <tr>
+            <td>objectguid</td>
+            <td>objectguid</td>
+            <td>{{ user.objectguid }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br><br><br><br>
+
+
+</div>
+
+
+{% endblock %}

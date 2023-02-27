@@ -1,0 +1,24 @@
+{% extends './base.html' %}
+<!-- TEST page for TEST Application-->
+{% block title %}
+Signup
+{% endblock %}
+
+{% block content %}
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">Création d'un compte</p></h1>
+    </div>
+
+    {% comment %}
+        <form method="POST" action = " {% url 'index' %}">
+    {% endcomment %}
+
+    <form method="POST"">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="S'inscrire">
+    </form>
+
+
+
+{% endblock %}

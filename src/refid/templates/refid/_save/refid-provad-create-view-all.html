@@ -1,0 +1,570 @@
+{% extends './base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+REFID User Create or Update
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+    <div class="w3-panel w3-light-blue w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    {% if mode == "update" %}
+    <h4 class="text-center" style="color:Blue">
+        {{ user.sn }}, {{ user.givenname }} ({{ user.samaccountname }} @ {{ user.company }})
+    </h4>
+    {% endif %}
+
+
+    <div class="container p-3 my-3 border">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- PROFIL DE L'UTILISATEUR ----------------------------------------------------->
+
+            <table class="table table-responsive table-hover table-bordered table-sm"
+                   style="width:100%;font-size:100%;">
+
+                <tr><h4 style="background-color:black;color:White;text-align: center;">PROFIL DE L'UTILISATEUR</h4></tr>
+
+                <!--IDENTIFIANT UNIQUE DE L'UTILISATEUR-->
+                <tr class="table-light">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">IDENTIFIANT UNIQUE DE L'UTILISATEUR</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"samaccountname": "USERID",-->
+                            <tr>
+                                <p class="errorlist"> {{ form.samaccountname.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.samaccountname.id_for_label }}"><b>USERID</b></label>
+                                </td>
+                                <td><b>{{ form.samaccountname }}</b></td>
+                            </tr>
+                            <!--"password": "PASSWORD",-->
+                            {% if mode == "create" %}
+                            <tr>
+                                <p class="errorlist">{{ form.password.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.password.id_for_label }}">PASSWORD</label></td>
+                                <td>{{ form.password }}</td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </td>
+                </tr>
+                <!--SIGNALETIQUE-->
+                <tr class="table-light">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">SIGNALETIQUE</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+
+                            <!--"sn": "NOM",-->
+                            <tr>
+                                <p class="errorlist">{{ form.sn.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.sn.id_for_label }}">NOM</label></td>
+                                <td>{{ form.sn }}</td>
+                            </tr>
+                            <!--"givenname": "PRENOM",-->
+                            <tr>
+                                <p class="errorlist">{{ form.givenname.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.givenname.id_for_label }}">PRENOM</label></td>
+                                <td>{{ form.givenname }}</td>
+                            </tr>
+
+                            <!--"preferredlanguage": "LANGUE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.preferredlanguage.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.preferredlanguage.id_for_label }}">LANGUE</label></td>
+                                <td>{{ form.preferredlanguage }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--PROFIL HÔPITAL-->
+                <tr class="table-light">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">PROFIL HÔPITAL</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"company": "HOPITAL",-->
+                            <tr>
+                                <p class="errorlist">{{ form.company.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.company.id_for_label }}">HOPITAL</label></td>
+                                <td>{{ form.company }}</td>
+                            </tr>
+                            <!--"physicaldeliveryofficename": "SITE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.physicaldeliveryofficename.errors }}
+                                <td class="mylabel"><label
+                                        for="{{ form.physicaldeliveryofficename.id_for_label }}">SITE</label>
+                                </td>
+                                <td>{{ form.physicaldeliveryofficename }}</td>
+                            </tr>
+                            <!--"businesscategory": "CATEGORIE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.businesscategory.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.businesscategory.id_for_label }}">CATEGORIE</label>
+                                </td>
+                                <td>{{ form.businesscategory }}</td>
+                            </tr>
+                            <!--"employeetype": "TYPE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.employeetype.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.employeetype.id_for_label }}">TYPE</label></td>
+                                <td>{{ form.employeetype }}</td>
+                            </tr>
+                            <!--"department": "DEPARTEMENT",-->
+                            <tr>
+                                <p class="errorlist">{{ form.department.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.department.id_for_label }}">DEPARTEMENT</label>
+                                </td>
+                                <td>{{ form.department }}</td>
+                            </tr>
+                            <!--                                &lt;!&ndash;"extensionattribute2": "MOUVEMENT",&ndash;&gt;-->
+                            <!--                                <tr>{{ form.extensionattribute2.errors }}-->
+                            <!--                                    <td class="mylabel"><label-->
+                            <!--                                            for="{{ form.extensionattribute2.id_for_label }}">MOUVEMENT</label>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>{{ form.extensionattribute2 }}</td>-->
+                            <!--                                </tr>-->
+                        </table>
+                    </td>
+                </tr>
+                <!--AUTRES IDENTIFIANTS-->
+                <tr class="table-light">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">AUTRES IDENTIFIANTS</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"employeenumber": "N°MATRICULE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.employeenumber.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.employeenumber.id_for_label }}">N°MATRICULE</label></td>
+                                <td>{{ form.employeenumber }}</td>
+                            </tr>
+                            <!--"extensionattribute1": "N°NISS",-->
+                            <tr>
+                                <p class="errorlist">{{ form.extensionattribute1.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.extensionattribute1.id_for_label }}">N°NISS</label></td>
+                                <td>{{ form.extensionattribute1 }}</td>
+                            </tr>
+                            <!--"extensionattribute11": "N°INAMI",-->
+                            <tr>
+                                <p class="errorlist">{{ form.extensionattribute11.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.extensionattribute11.id_for_label }}">N°INAMI</label></td>
+                                <td>{{ form.extensionattribute11 }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--TELEPHONIE-->
+                <tr class="table-light">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">TELEPHONIE</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"telephonenumber": "TELEPHONE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.telephonenumber.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.telephonenumber.id_for_label }}">TELEPHONE</label>
+                                </td>
+                                <td>{{ form.telephonenumber }}</td>
+                            </tr>
+                            <!--"pager": "PORTABLE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.pager.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.pager.id_for_label }}">PORTABLE</label></td>
+                                <td>{{ form.pager }}</td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="btn-group">
+                <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                <a href="{% url 'refid-provad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+                <a href="#" class="btn btn-error btn-warning">Rafraichir</a>
+
+                <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                    <li><a class="dropdown-item" href="#">Send PDF Mail</a></li>
+                 </ul>
+            </div>
+
+            <br><br>
+
+            <!-- INFORMATION SUR LE COMPTE UTILISATEUR (AD/EXCHANGE) ------------------------------------------------->
+
+            <table class="table table-responsive table-hover  table-bordered table-sm"
+                   style="width:100%;font-size:100%;">
+
+                <tr><h4 style="background-color:black;color:White;text-align: center;">INFORMATION SUR LE COMPTE UTILISATEUR (AD/EXCHANGE)</h4></tr>
+
+                <!--COMPTE AD-->
+                <tr class="table-info">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">COMPTE AD</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--    "description": "DESCRIPTION",-->
+                            <tr>
+                                <p class="errorlist">{{ form.description.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.description.id_for_label }}">DESCRIPTION</label>
+                                </td>
+                                <td>{{ form.description }}</td>
+                            </tr>
+                            <!--    "info": "INFO",-->
+                            <tr>
+                                <p class="errorlist">{{ form.info.errors }}
+                                <td class="mylabel"><label for="{{ form.info.id_for_label }}">INFO</label></td>
+                                <td>{{ form.info }}</td>
+                            </tr>
+                            <!--    "enableaccountexpires": "DATE D'EXPIRATION ACTIVE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.enableaccountexpires.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.enableaccountexpires.id_for_label }}">DATE D'EXPIRATION
+                                    ACTIVE</label>
+                                </td>
+                                <td>{{ form.enableaccountexpires }}</td>
+                            </tr>
+                            <!--    "accountexpires": "DATE D'EXPIRATION",-->
+                            <tr>
+                                <p class="errorlist">{{ form.accountexpires.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.accountexpires.id_for_label }}">DATE
+                                    D'EXPIRATION</label></td>
+                                <td>{{ form.accountexpires }}</td>
+                            </tr>
+                            <!--    "changepasswordatlogon": "CHANGE PASSWORD AU 1er LOGON",-->
+                            <tr>
+                                <p class="errorlist">{{ form.changepasswordatlogon.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.changepasswordatlogon.id_for_label }}">CHANGE PSW AU LOGON</label>
+                                </td>
+                                <td>{{ form.changepasswordatlogon }}</td>
+                            </tr>
+                            <!--     "enabled": "ACTIF",-->
+                            <tr>
+                                <p class="errorlist">{{ form.enabled.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.enabled.id_for_label }}">ACTIF</label></td>
+                                <td>{{ form.enabled }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--COMPTE EXCHANGE-->
+                <tr class="table-info">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">COMPTE EXCHANGE</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"enablemail": "MAIL ACTIVE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.enablemail.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.enablemail.id_for_label }}">MAIL ACTIVE</label>
+                                </td>
+                                <td>{{ form.enablemail }}</td>
+                            </tr>
+                            <!--"mail": "MAIL",-->
+                            <tr>
+                                <p class="errorlist">{{ form.mail.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.mail.id_for_label }}">MAIL</label></td>
+                                <td>{{ form.mail }}</td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+                <!--GROUPES DE SECURITE-->
+                <tr class="table-info">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">GROUPES DE SECURITE</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"groups": "GROUPES DE SECURITE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.groups.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.groups.id_for_label }}">GROUPES DE
+                                    SECURITE</label></td>
+                                <td>{{ form.groups }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--LISTES DE DISTRIBUTION-->
+                <tr class="table-info">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">LISTES DE DISTRIBUTION</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"distributionlist": "LISTES DE DISTRIBUTION",-->
+                            <tr>
+                                <p class="errorlist">{{ form.distributionlist.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.distributionlist.id_for_label }}">LISTES DE
+                                    DISTRIBUTION</label>
+                                </td>
+                                <td>{{ form.distributionlist }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--AUTRES INFORMATIONS POUR L'AD-->
+                <tr class="table-info">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">AUTRES INFORMATIONS POUR L'AD</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--    "extensionattribute15": "CODE SOURCE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.extensionattribute15.errors }}
+                                <td class="mylabel"><label
+                                        for="{{ form.extensionattribute15.id_for_label }}">CODE SOURCE</label>
+                                </td>
+                                <td>{{ form.extensionattribute15 }}</td>
+                            </tr>
+                            <!--    "homedir": "HOME DIRECTORY",-->
+                            <tr>
+                                <p class="errorlist">{{ form.homedir.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.homedir.id_for_label }}">HOME DIRECTORY</label>
+                                </td>
+                                <td>{{ form.homedir }}</td>
+                            </tr>
+                            <!--    "homedrive": "HOME DRIVE",-->
+                            <tr>
+                                <p class="errorlist">{{ form.homedrive.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.homedrive.id_for_label }}">HOME DRIVE</label>
+                                </td>
+                                <td>{{ form.homedrive }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="btn-group">
+                <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                <a href="{% url 'refid-provad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+                <a href="#" class="btn btn-error btn-warning">Rafraichir</a>
+
+                <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                    <li><a class="dropdown-item" href="#">Send PDF Mail</a></li>
+                 </ul>
+            </div>
+
+            <br><br>
+
+            <!-- INFORMATION SUR LE SYSTEME DE PROVISIONNEMENT ----------------------------------------------------->
+
+            <table class="table table-responsive table-hover table-bordered table-sm"
+                   style="width:100%;font-size:100%;">
+
+                <tr><h4 style="background-color:black;color:White;text-align: center;">INFORMATION SUR LE SYSTEME DE PROVISIONNEMENT</h4></tr>
+
+                <!--ENVIRONMENT DE TRAVAIL-->
+                <tr class="table-active">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">ENVIRONMENT DE TRAVAIL</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"env": "ENVIRONNEMENT",-->
+                            <tr>
+                                <p class="errorlist">{{ form.env.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.env.id_for_label }}">ENVIRONNEMENT</label></td>
+                                <td>{{ form.env }}</td>
+                            </tr>
+                            <!--"org": "ORGANISATION",-->
+                            <tr>
+                                <p class="errorlist">{{ form.org.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.org.id_for_label }}">ORGANISATION</label></td>
+                                <td>{{ form.org }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--ACTION DEMANDEE-->
+                <tr class="table-active">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">ACTION DEMANDEE</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"actiontype": "TYPE D'ACTION",-->
+                            <tr>
+                                <p class="errorlist">{{ form.actiontype.errors }}</p>
+                                <td class="mylabel"><label for="{{ form.actiontype.id_for_label }}">TYPE D'ACTION</label>
+                                </td>
+                                <td>{{ form.actiontype }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--INFORMATIONS SUR L'ENCODAGE APPLICATIF-->
+                <tr class="table-active">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">INFORMATIONS SUR L'ENCODAGE APPLICATIF</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"usercre": "user cre",-->
+                            <tr>
+                                <p class="errorlist">{{ form.usercre.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.usercre.id_for_label }}">USER CREATE</label></td>
+                                <td>{{ form.usercre }}</td>
+                            </tr>
+                            <!--"datecre": "date cre",-->
+                            <tr>
+                                <p class="errorlist">{{ form.datecre.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.datecre.id_for_label }}">DATE CREATE</label></td>
+                                <td>{{ form.datecre }}</td>
+                            </tr>
+                            <!--"userupd": "user upd",-->
+                            <tr>
+                                <p class="errorlist">{{ form.userupd.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.userupd.id_for_label }}">USER UPDATE</label></td>
+                                <td>{{ form.userupd }}</td>
+                            </tr>
+                            <!--"dateupd": "date upd",-->
+                            <tr>
+                                <p class="errorlist">{{ form.dateupd.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.dateupd.id_for_label }}">DATE UPDATE</label></td>
+                                <td>{{ form.dateupd }}</td>
+                            </tr>
+<!--                            &lt;!&ndash;"msgrefid": "msg refid",&ndash;&gt;-->
+<!--                            <tr>-->
+<!--                                <p class="errorlist">{{ form.msgrefid.errors }}</p>-->
+<!--                                <td class="mylabel"><label for="{{ form.msgrefid.id_for_label }}">msg refid</label></td>-->
+<!--                                <td>{{ form.msgrefid }}</td>-->
+<!--                            </tr>-->
+<!--                            &lt;!&ndash;"msgdb": "msg db",&ndash;&gt;-->
+<!--                            <tr>-->
+<!--                                <p class="errorlist">{{ form.msgdb.errors }}</p>-->
+<!--                                <td class="mylabel"><label for="{{ form.msgdb.id_for_label }}">msg db</label></td>-->
+<!--                                <td>{{ form.msgdb }}</td>-->
+<!--                            </tr>-->
+                        </table>
+                    </td>
+                </tr>
+                <!--STATUT D'INTEGRATION AD-->
+                <tr class="table-active">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">STATUT D'INTEGRATION AD</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"msgad": "msgad",-->
+                            <tr>
+                                <p class="errorlist">{{ form.msgad.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.msgad.id_for_label }}">AD RETURN CODE</label></td>
+                                <td>{{ form.msgad }}</td>
+                            </tr>
+                            <!--"datesyncad": "datesyncad",-->
+                            <tr>
+                                <p class="errorlist">{{ form.datesyncad.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.datesyncad.id_for_label }}">AD DATE SYNC</label>
+                                </td>
+                                <td>{{ form.datesyncad }}</td>
+                            </tr>
+                            <!--"flagsyncad": "flagsyncad",-->
+                            <tr>{{ form.flagsyncad.errors }}
+                                <td class="mylabel"><label for="{{ form.flagsyncad.id_for_label }}">AD TRIGGER/FLAG SYNC</label>
+                                </td>
+                                <td>{{ form.flagsyncad }}</td>
+                            </tr class="errorlist">
+                        </table>
+                    </td>
+                </tr>
+                <!--STATUT D'INTEGRATION EXCHANGE-->
+                <tr class="table-active">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">STATUT D'INTEGRATION EXCHANGE</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"msgexchange": "msgexchange",-->
+                            <tr>
+                                <p class="errorlist">{{ form.msgexchange.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label for="{{ form.msgexchange.id_for_label }}">EXCHANGE RETURN CODE</label>
+                                </td>
+                                <td>{{ form.msgexchange }}</td>
+                            </tr>
+                            <!--"datesyncexchange": "datesyncexchange",-->
+                            <tr>
+                                <p class="errorlist">{{ form.datesyncexchange.errors }}</p>
+                                <td class="mylabelBlackReadOnly"><label
+                                        for="{{ form.datesyncexchange.id_for_label }}">EXCHANGE DATE SYNC</label>
+                                </td>
+                                <td>{{ form.datesyncexchange }}</td>
+                            </tr>
+                            <!--"flagsyncexchange": "flagsyncexchange",-->
+                            <tr>
+                                <p class="errorlist">{{ form.flagsyncexchange.errors }}</p>
+                                <td class="mylabel"><label
+                                        for="{{ form.flagsyncexchange.id_for_label }}">EXCHANGE TRIGGER/FLAG SYNC</label>
+                                </td>
+                                <td>{{ form.flagsyncexchange }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--AD OBJECTS KEYS-->
+                <tr class="table-dark">
+                    <td>
+                        <h5 style="background-color:Gray;color:White">AD OBJECTS KEYS</h5>
+                        <table class="table table-responsive table-borderless table-sm" style="width:100%;font-size:100%;">
+                            <p style="background-color:royalblue;">{{ form.non_field_errors }}</p>
+                            <!--"objectsid": "objectsid",-->
+                            <tr>
+                                <p class="errorlist">{{ form.objectsid.errors }}</p>
+                                <td class="mylabelWhiteReadOnly"><label for="{{ form.objectsid.id_for_label }}">AD OBJECT SID</label>
+                                </td>
+                                <td>{{ form.objectsid }}</td>
+                            </tr>
+                            <!--"objectguid": "objectguid",-->
+                            <tr>
+                                <p class="errorlist">{{ form.objectguid.errors }}</p>
+                                <td class="mylabelWhiteReadOnly"><label for="{{ form.objectguid.id_for_label }}">AD OBJECT GUID</label>
+                                </td>
+                                <td>{{ form.objectguid }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="btn-group">
+                <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                <a href="{% url 'refid-provad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+                <a href="#" class="btn btn-error btn-warning">Rafraichir</a>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn btn-error btn-primary">Reset Password</a>
+                <a href="#" class="btn btn-error btn-info">Send PDF Mail</a>
+            </div>
+
+            <br><br>
+
+        </form>
+
+    </div>
+
+    <br><br>
+
+
+</div>
+
+{% endblock %}

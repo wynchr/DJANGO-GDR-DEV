@@ -1,0 +1,723 @@
+{% load static %}
+<!-- DATATABLES INCLUDE page for REFID Application-->
+
+<!-- tableProvadList-->
+<script>
+    $(document).ready(function() {
+        $('#tableProvadList thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#tableProvadList thead');
+
+        var table = $('#tableProvadList').DataTable({
+            // Datatables configuration
+            paging: true,
+            pageLength: 10,
+            lengthChange:true,
+            autoWidth: false,
+            scrollX: true,
+            // scrollY: true,
+            scrollY: 300,
+            scrollCollapse: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            order : [[10,"desc"]],
+
+            // Disable columns with specific filter
+            // "columnDefs": [{
+            //     "targets": [4,5],
+            //     "orderable": false
+            // }]
+            initComplete: function() {
+                var api = this.api();
+
+                // Set the columns you which filtering
+                api
+                    .columns([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    .eq(0)
+                    .each(function(colIdx) {
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '"/>');
+
+                        $(
+                            'input',
+                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                        )
+                        .off('keyup change')
+                        .on('keyup change', function(e) {
+                            e.stopPropagation();
+
+                            $(this).attr('title', $(this).val());
+                            var regexr = '({search})';
+
+                            var cursorPosition = this.selectionStart;
+
+                            api
+                                .column(colIdx)
+                                .search(
+                                    this.value != ''
+                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                        : '',
+                                    this.value != '',
+                                    this.value == ''
+                                )
+                            .draw();
+                        $(this)
+                            .focus()[0]
+                            .setSelectionRange(cursorPosition, cursorPosition);
+                        });
+                    });
+            },
+            // BUTTONS
+            // dom: 'lBfrtip',
+            // buttons: [
+            //     {   // COPY to clipboard
+            //         extend: 'copy',
+            //         text: '<i class="fas fa-clone"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'Copy',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            //         },
+            //     },
+            //     {   // EXCEL
+            //         extend: 'excel',
+            //         text: '<i class="fas fa-file-excel"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'Excel',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            //         },
+            //     },
+            //     {   // Print
+            //         extend: 'print',
+            //         text: '<i class="fas fa-print"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'Print',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            //         },
+            //         // Font size when export to print)
+            //         customize: function( win ) {
+            //             $(win.document.body).css('font-size', '10pt')
+            //             $(win.document.body).find('table')
+            //                 .addClass('compact')
+            //                 .css('font-size', 'inherit');
+            //         }
+            //     },
+            //     {   // PDF
+            //         extend: 'pdf',
+            //         text: '<i class="fas fa-file-pdf"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'PDF',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            //         },
+            //         // Center the table
+            //         tableHeader: {
+            //             alignment: 'center'
+            //         },
+            //         // Font zize and optimization
+            //         customize: function (doc) {
+            //             doc.styles.tableHeader.alignment = 'center'; // Header position
+            //             doc.styles.tableBodyOdd.alignment = 'center'; // Body position 1 (grey color)
+            //             doc.styles.tableBodyEven.alignment = 'center'; // Body position 2 (white color)
+            //             doc.styles.tableHeader.fontSize = 7; // Header font-size
+            //             doc.defaultStyle.fontSize = 6; // Body font-size
+            //             // to get 100M width of the table
+            //             doc.content[1].table.width = Array(doc.content[1].table.body[1].length + 1).join('*').split('');
+            //         }
+            //     },
+            // ]
+        });
+        // Enable Searchbox Outside
+        var newSearch = $("#tableProvadList").DataTable();
+        $('#search').keyup(function() {
+            newSearch.search($(this).val()).draw();
+        })
+    });
+</script>
+
+<!-- tableMonitorList-->
+<script>
+    $(document).ready(function() {
+        $('#tableMonitorList thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#tableMonitorList thead');
+
+        var table = $('#tableMonitorList').DataTable({
+            // Datatables configuration
+            paging: true,
+            pageLength: 10,
+            lengthChange:true,
+            autoWidth: false,
+            scrollX: true,
+            // scrollY: true,
+            scrollY: 300,
+            scrollCollapse: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            order : [[8,"desc"]],
+            // Disable columns with specific filter
+            // "columnDefs": [{
+            //     "targets": [4,5],
+            //     "orderable": false
+            // }]
+            initComplete: function() {
+                var api = this.api();
+
+                // Set the columns you which filtering
+                api
+                    .columns([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17])
+                    .eq(0)
+                    .each(function(colIdx) {
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '"/>');
+
+                        $(
+                            'input',
+                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                        )
+                        .off('keyup change')
+                        .on('keyup change', function(e) {
+                            e.stopPropagation();
+
+                            $(this).attr('title', $(this).val());
+                            var regexr = '({search})';
+
+                            var cursorPosition = this.selectionStart;
+
+                            api
+                                .column(colIdx)
+                                .search(
+                                    this.value != ''
+                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                        : '',
+                                    this.value != '',
+                                    this.value == ''
+                                )
+                            .draw();
+                        $(this)
+                            .focus()[0]
+                            .setSelectionRange(cursorPosition, cursorPosition);
+                        });
+                    });
+            },
+            // BUTTONS
+            // dom: 'lBfrtip',
+            // buttons: [
+            //     {   // COPY to clipboard
+            //         extend: 'copy',
+            //         text: '<i class="fas fa-clone"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'Copy',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]]
+            //         },
+            //     },
+            //     {   // EXCEL
+            //         extend: 'excel',
+            //         text: '<i class="fas fa-file-excel"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'Excel',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]]
+            //         },
+            //     },
+            //     {   // Print
+            //         extend: 'print',
+            //         text: '<i class="fas fa-print"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'Print',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]]
+            //         },
+            //         // Font size when export to print)
+            //         customize: function( win ) {
+            //             $(win.document.body).css('font-size', '10pt')
+            //             $(win.document.body).find('table')
+            //                 .addClass('compact')
+            //                 .css('font-size', 'inherit');
+            //         }
+            //     },
+            //     {   // PDF
+            //         extend: 'pdf',
+            //         text: '<i class="fas fa-file-pdf"></i>',
+            //         className: 'btn btn-secondary',
+            //         titleAttr: 'PDF',
+            //         // Choose the columns you wish to export
+            //         exportOptions: {
+            //             columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]]
+            //         },
+            //         // Center the table
+            //         tableHeader: {
+            //             alignment: 'center'
+            //         },
+            //         // Font zize and optimization
+            //         customize: function (doc) {
+            //             doc.styles.tableHeader.alignment = 'center'; // Header position
+            //             doc.styles.tableBodyOdd.alignment = 'center'; // Body position 1 (grey color)
+            //             doc.styles.tableBodyEven.alignment = 'center'; // Body position 2 (white color)
+            //             doc.styles.tableHeader.fontSize = 7; // Header font-size
+            //             doc.defaultStyle.fontSize = 6; // Body font-size
+            //             // to get 100M width of the table
+            //             doc.content[1].table.width = Array(doc.content[1].table.body[1].length + 1).join('*').split('');
+            //         }
+            //     },
+            // ]
+        });
+        // Enable Searchbox Outside
+        var newSearch = $("#tableMonitorList").DataTable();
+        $('#search').keyup(function() {
+            newSearch.search($(this).val()).draw();
+        })
+    });
+</script>
+
+<!-- tableCacheRHList-->
+<script>
+    $(document).ready(function() {
+        $('#tableCacheRHList thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#tableCacheRHList thead');
+
+        var table = $('#tableCacheRHList').DataTable({
+            // Datatables configuration
+            paging: true,
+            pageLength: 10,
+            lengthChange:true,
+            autoWidth: false,
+            scrollX: true,
+            // scrollY: true,
+            scrollY: 300,
+            scrollCollapse: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            order : [[0,"desc"]],
+            // Disable columns with specific filter
+            // "columnDefs": [{
+            //     "targets": [4,5],
+            //     "orderable": false
+            // }]
+            initComplete: function() {
+                var api = this.api();
+
+                // Set the columns you which filtering
+                api
+                    .columns([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
+                    .eq(0)
+                    .each(function(colIdx) {
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '"/>');
+
+                        $(
+                            'input',
+                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                        )
+                        .off('keyup change')
+                        .on('keyup change', function(e) {
+                            e.stopPropagation();
+
+                            $(this).attr('title', $(this).val());
+                            var regexr = '({search})';
+
+                            var cursorPosition = this.selectionStart;
+
+                            api
+                                .column(colIdx)
+                                .search(
+                                    this.value != ''
+                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                        : '',
+                                    this.value != '',
+                                    this.value == ''
+                                )
+                            .draw();
+                        $(this)
+                            .focus()[0]
+                            .setSelectionRange(cursorPosition, cursorPosition);
+                        });
+                    });
+            },
+            // BUTTONS
+            dom: 'lBfrtip',
+            buttons: [
+                {   // COPY to clipboard
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                },
+                {   // EXCEL
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                },
+                {   // Print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Print',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                    // Font size when export to print)
+                    customize: function( win ) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   // PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                    // Center the table
+                    tableHeader: {
+                        alignment: 'center'
+                    },
+                    // Font zize and optimization
+                    customize: function (doc) {
+                        doc.styles.tableHeader.alignment = 'center'; // Header position
+                        doc.styles.tableBodyOdd.alignment = 'center'; // Body position 1 (grey color)
+                        doc.styles.tableBodyEven.alignment = 'center'; // Body position 2 (white color)
+                        doc.styles.tableHeader.fontSize = 7; // Header font-size
+                        doc.defaultStyle.fontSize = 6; // Body font-size
+                        // to get 100M width of the table
+                        doc.content[1].table.width = Array(doc.content[1].table.body[1].length + 1).join('*').split('');
+                    }
+                },
+            ]
+        });
+        // Enable Searchbox Outside
+        var newSearch = $("#tableCacheRHList").DataTable();
+        $('#search').keyup(function() {
+            newSearch.search($(this).val()).draw();
+        })
+    });
+</script>
+
+<!-- tableCacheADList-->
+<script>
+    $(document).ready(function() {
+        $('#tableCacheADList thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#tableCacheADList thead');
+
+        var table = $('#tableCacheADList').DataTable({
+            // Datatables configuration
+            paging: true,
+            pageLength: 10,
+            lengthChange:true,
+            autoWidth: false,
+            scrollX: true,
+            // scrollY: true,
+            scrollY: 300,
+            scrollCollapse: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            order : [[12,"desc"]],
+            // Disable columns with specific filter
+            // "columnDefs": [{
+            //     "targets": [4,5],
+            //     "orderable": false
+            // }]
+            initComplete: function() {
+                var api = this.api();
+
+                // Set the columns you which filtering
+                api
+                    .columns([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
+                    .eq(0)
+                    .each(function(colIdx) {
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '"/>');
+
+                        $(
+                            'input',
+                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                        )
+                        .off('keyup change')
+                        .on('keyup change', function(e) {
+                            e.stopPropagation();
+
+                            $(this).attr('title', $(this).val());
+                            var regexr = '({search})';
+
+                            var cursorPosition = this.selectionStart;
+
+                            api
+                                .column(colIdx)
+                                .search(
+                                    this.value != ''
+                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                        : '',
+                                    this.value != '',
+                                    this.value == ''
+                                )
+                            .draw();
+                        $(this)
+                            .focus()[0]
+                            .setSelectionRange(cursorPosition, cursorPosition);
+                        });
+                    });
+            },
+            // BUTTONS
+            dom: 'lBfrtip',
+            buttons: [
+                {   // COPY to clipboard
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                },
+                {   // EXCEL
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                },
+                {   // Print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Print',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                    // Font size when export to print)
+                    customize: function( win ) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   // PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
+                    },
+                    // Center the table
+                    tableHeader: {
+                        alignment: 'center'
+                    },
+                    // Font zize and optimization
+                    customize: function (doc) {
+                        doc.styles.tableHeader.alignment = 'center'; // Header position
+                        doc.styles.tableBodyOdd.alignment = 'center'; // Body position 1 (grey color)
+                        doc.styles.tableBodyEven.alignment = 'center'; // Body position 2 (white color)
+                        doc.styles.tableHeader.fontSize = 7; // Header font-size
+                        doc.defaultStyle.fontSize = 6; // Body font-size
+                        // to get 100M width of the table
+                        doc.content[1].table.width = Array(doc.content[1].table.body[1].length + 1).join('*').split('');
+                    }
+                },
+            ]
+        });
+        // Enable Searchbox Outside
+        var newSearch = $("#tableCacheADList").DataTable();
+        $('#search').keyup(function() {
+            newSearch.search($(this).val()).draw();
+        })
+    });
+</script>
+
+<!-- tableCacheEVIDIANList-->
+<script>
+    $(document).ready(function() {
+        $('#tableCacheEVIDIANList thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#tableCacheEVIDIANList thead');
+
+        var table = $('#tableCacheEVIDIANList').DataTable({
+            // Datatables configuration
+            paging: true,
+            pageLength: 10,
+            lengthChange:true,
+            autoWidth: false,
+            scrollX: true,
+            // scrollY: true,
+            scrollY: 300,
+            scrollCollapse: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            order : [[17,"desc"]],
+            // Disable columns with specific filter
+            // "columnDefs": [{
+            //     "targets": [4,5],
+            //     "orderable": false
+            // }]
+            initComplete: function() {
+                var api = this.api();
+
+                // Set the columns you which filtering
+                api
+                    .columns([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
+                    .eq(0)
+                    .each(function(colIdx) {
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '"/>');
+
+                        $(
+                            'input',
+                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                        )
+                        .off('keyup change')
+                        .on('keyup change', function(e) {
+                            e.stopPropagation();
+
+                            $(this).attr('title', $(this).val());
+                            var regexr = '({search})';
+
+                            var cursorPosition = this.selectionStart;
+
+                            api
+                                .column(colIdx)
+                                .search(
+                                    this.value != ''
+                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                        : '',
+                                    this.value != '',
+                                    this.value == ''
+                                )
+                            .draw();
+                        $(this)
+                            .focus()[0]
+                            .setSelectionRange(cursorPosition, cursorPosition);
+                        });
+                    });
+            },
+            // BUTTONS
+            dom: 'lBfrtip',
+            buttons: [
+                {   // COPY to clipboard
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]]
+                    },
+                },
+                {   // EXCEL
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]]
+                    },
+                },
+                {   // Print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Print',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]]
+                    },
+                    // Font size when export to print)
+                    customize: function( win ) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   // PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // Choose the columns you wish to export
+                    exportOptions: {
+                        columns: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]]
+                    },
+                    // Center the table
+                    tableHeader: {
+                        alignment: 'center'
+                    },
+                    // Font zize and optimization
+                    customize: function (doc) {
+                        doc.styles.tableHeader.alignment = 'center'; // Header position
+                        doc.styles.tableBodyOdd.alignment = 'center'; // Body position 1 (grey color)
+                        doc.styles.tableBodyEven.alignment = 'center'; // Body position 2 (white color)
+                        doc.styles.tableHeader.fontSize = 7; // Header font-size
+                        doc.defaultStyle.fontSize = 6; // Body font-size
+                        // to get 100M width of the table
+                        doc.content[1].table.width = Array(doc.content[1].table.body[1].length + 1).join('*').split('');
+                    }
+                },
+            ]
+        });
+        // Enable Searchbox Outside
+        var newSearch = $("#tableCacheEVIDIANList").DataTable();
+        $('#search').keyup(function() {
+            newSearch.search($(this).val()).draw();
+        })
+    });
+</script>

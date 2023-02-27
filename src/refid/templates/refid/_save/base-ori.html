@@ -1,0 +1,24 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    {% include './includes/meta-ori.html' %}
+    {% include './includes/link-ori.html' %}
+    <title>{% block title %}REFID{% endblock title %} | REFID</title>
+</head>
+
+
+<body class="d-flex flex-column">
+
+        {% include './includes/header.html' %}
+
+        <div id="content" name="content">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+        {% include './includes/footer.html' %}
+
+</body>
+</html>

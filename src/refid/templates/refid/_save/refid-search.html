@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="get" action="{% url 'refid-search' %}">
+    {{ form.as_p }}
+    <input type="submit" value="Search">
+</form>
+
+{% for result in results %}
+
+<p>{{ result.samaccountname }} : {{ result.sn }}, {{ result.givenname }} - {{ result.company }}</p>
+
+{% endfor %}
+</body>
+</html>

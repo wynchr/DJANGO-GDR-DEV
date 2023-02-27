@@ -1,0 +1,374 @@
+{% extends './base.html' %}
+{% load crispy_forms_tags %}
+
+<!--  ProvAd Create View page for REFID Application-->
+
+{% block title %}
+User Create/Update
+{% endblock %}
+
+{% block content %}
+
+<script>
+    function copyValue() {
+        var sourceField1 = document.getElementById('id_sn');
+        var targetField1 = document.getElementById('id_usualsn');
+        targetField1.value = sourceField1.value;
+        var sourceField2 = document.getElementById('id_givenname');
+        var targetField2 = document.getElementById('id_usualgivenname');
+        targetField2.value = sourceField2.value;
+    }
+</script>
+<script>
+    function createMail() {
+        var hopital = document.getElementById('id_company');
+        var extension = "";
+        console.log(hopital.value)
+        switch (hopital.value.toUpperCase()) {
+          case "CHU-BRUGMANN":
+            extension = "@chu-brugmann.be";
+            break;
+          case "HUDERF":
+            extension = "@huderf.be";
+            break;
+          case "BRUSTP":
+            extension = "@brustp.be";
+            break;
+          default:
+            extension = "@unknown";
+        }
+        var usualsn = document.getElementById('id_usualsn');
+        var usualgivenname = document.getElementById('id_usualgivenname');
+        var mail = document.getElementById('id_mail');
+        mail.value = usualgivenname.value + "." + usualsn.value + extension;
+        mail.value = mail.value.toLowerCase();
+    }
+</script>
+
+<!-- Container -->
+<div class="container mt-3">
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    {% if mode == "update" %}
+    <h4 class="text-center" style="color:Blue">
+        {{ user.usualsn }}, {{ user.usualgivenname }} ({{ user.samaccountname }} @ {{ user.company }})
+    </h4>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Nav Tabs -->
+        <ul class="nav nav-tabs nav-pills nav-fill nav-justified flex-column flex-sm-row" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#menu-identite">IDENTITE</a>
+            </li>
+            {% if request.user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu-securite">SECURITE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu-distribution">DISTRIBUTION</a>
+            </li>
+            {% endif %}
+        </ul> <!--  End Nav Tabs -->
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Tab Panes IDENTITE -->
+            <div id="menu-identite" class="container tab-pane active"><br>
+                {% if request.user.is_staff %}
+                <!--PROFIL ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- PROFIL DE L'UTILISATEUR ----------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        PROFIL UTILISATEUR - [HUMAN RESOURCE PROFILE - Legal Identity Information]
+                    </h6>
+                    <!--SIGNALETIQUE part 1-->
+                    <div class="row">
+                        <div class="col-6" onkeyup="copyValue()">{{ form.sn|as_crispy_field }}</div>
+                        <div class="col-6" onkeyup="copyValue()">{{ form.givenname|as_crispy_field }}</div>
+                    </div>
+                    <!--SIGNALETIQUE part 2-->
+                    <div class="row">
+                        <div class="col-6" onkeyup="createMail()">{{ form.usualsn|as_crispy_field }}</div>
+                        <div class="col-6" onkeyup="createMail()">{{ form.usualgivenname|as_crispy_field }}</div>
+                    </div>
+                    <!--SIGNALETIQUE part 3-->
+                    <div class="row">
+                        <div class="col-3">{{ form.preferredlanguage|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.gender|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.quality|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.birthdate|as_crispy_field }}</div>
+                    </div>
+                    <!--PROFIL HÔPITAL-->
+                    <div class="row">
+                        <div class="col-6" onchange="createMail()">{{ form.company|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.physicaldeliveryofficename|as_crispy_field }}</div>
+<!--                        <div class="col-4">{ form.department|as_crispy_field }}</div>-->
+                    </div>
+                    <!--PROFIL EMPLOYEE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.businesscategory|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.employeetype|as_crispy_field }}</div>
+                    </div>
+                    <!--AUTRES IDENTIFIANTS-->
+                    <div class="row">
+                        <div class="col-4">{{ form.cardtype|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.employeenumber|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.extensionattribute11|as_crispy_field }}</div>
+                    </div>
+                    <!--TELEPHONIE-->
+                    <div class="row">
+                        <div class="col-4">{{ form.telephonenumber|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.pager|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.localisation|as_crispy_field }}</div>
+                    </div>
+                </div>
+                <!--COMPTE AD/EXCHANGE ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- INFORMATION SUR LE COMPTE UTILISATEUR (AD/EXCHANGE) ------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        COMPTE UTILISATEUR - [CHU BRUGMANN / HUDERF - Network Account Information]
+                    </h6>
+                    <!--IDENTIFIANT UNIQUE DE L'UTILISATEUR-->
+                    <div class="row">
+                        <div class="col-6">{{ form.samaccountname|as_crispy_field }}</div>
+                        <!--                        <div class="col-6">{ form.password|as_crispy_field }}</div>-->
+                        <div class="col-6">{{ form.extensionattribute1|as_crispy_field }}</div>
+                    </div>
+                    <!--COMPTE AD-->
+                    <div class="row">
+                        <div class="col-3">{{ form.enableaccountexpires|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.accountexpires|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.changepasswordatlogon|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.enabled|as_crispy_field }}</div>
+                    </div>
+                    <!--COMPTE EXCHANGE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.enablemail|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.mail|as_crispy_field }}</div>
+                    </div>
+                    <!--ZONES D'INFORMATION-->
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form.description|as_crispy_field }}
+                        </div>
+                    </div>
+                    <!--METADATA-->
+<!--                    <div class="col-12">-->
+<!--                        { form.metadata|as_crispy_field }}-->
+<!--                    </div>-->
+                </div>
+                <!--COMPTE RH ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- INFORMATION SUR LE COMPTE ARNO-RH ------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        COMPTE ARNO-RH
+                    </h6>
+                    <!--INFO RH part 1 -->
+                    <div class="row">
+                        <div class="col-4">{{ form.rhmatricule|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhnom|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhprenom|as_crispy_field }}</div>
+                    </div>
+                    <!-- INFO RH part 2 -->
+                    <div class="row">
+                        <div class="col-4">{{ form.rhsexe|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhdnais|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhlangue|as_crispy_field }}</div>
+                    </div>
+                    <!--INFO RH part 3-->
+                    <div class="row">
+                        <div class="col-4">{{ form.rhnumcardid|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhnumnational|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhinami|as_crispy_field }}</div>
+                    </div>
+                    <!--INFO RH part 4-->
+                    <div class="row">
+                        <div class="col-4">{{ form.rhdatedeb|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhdatefin|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhstatutcontrat|as_crispy_field }}</div>
+                    </div>
+                    <!--INFO RH part 5-->
+                    <div class="row">
+                        <div class="col-4">{{ form.rhcodesociete|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhcodeprofil|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhprofil|as_crispy_field }}</div>
+                    </div>
+                    <!--INFO RH part 6-->
+                    <div class="row">
+                        <div class="col-4">{{ form.rhcaqualification|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhcacode|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.rhcalib|as_crispy_field }}</div>
+
+                    </div>
+                    <!--INFO RH part 7-->
+<!--                    <div class="col-12">-->
+<!--                        { form.rhmetadata|as_crispy_field }}-->
+<!--                    </div>-->
+                </div>
+                <!--COMPTE EVIDIAN ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- INFORMATION SUR LE COMPTE EVIDIAN ------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        COMPTE IAM-EVIDIAN
+                    </h6>
+                    <!-- INFO EVIDIAN part 1 -->
+                    <div class="row">
+                        <div class="col-6">{{ form.enatelbegintime|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.enatelendtime|as_crispy_field }}</div>
+                    </div>
+                    <!--INFO EVIDIAN part 2 -->
+                    <div class="row">
+                        <div class="col-4">{{ form.chuidoriginsource|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.evdidmstate|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.evdpmschedulerstatus|as_crispy_field }}</div>
+                    </div>
+                </div>
+                <!--COMPTE AD-OSIRIS ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- INFORMATION SUR LE COMPTE AD-OSIRIS ----------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        COMPTE AD-OSIRIS
+                    </h6>
+                    <!--AD OBJECTS KEYS-->
+                    <div class="row">
+                        <div class="col-6">{{ form.objectsid|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.objectguid|as_crispy_field }}</div>
+                    </div>
+                    <!--AD OBJECTS DATE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.whencreated|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.whenchanged|as_crispy_field }}</div>
+                    </div>
+                    <!--AD OBJECTS DATE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.lastlogontimestamp|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.lastlogon|as_crispy_field }}</div>
+                    </div>
+                    <!--AD OBJECTS DATE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.pwdlastset|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.badpasswordtime|as_crispy_field }}</div>
+                    </div>
+                    <!--AD OBJECTS DATE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.msexchwhenmailboxcreated|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.rfidatesync|as_crispy_field }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                <!--SYSTEME ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- INFORMATION SUR LE SYSTEME DE PROVISIONNEMENT ----------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        SYSTEME - [REFID - Identity Lifecycle System]
+                    </h6>
+                    <!--ENVIRONMENT DE TRAVAIL - ACTION DEMANDEE-->
+                    <div class="row">
+                        <div class="col-2">{{ form.env|as_crispy_field }}</div>
+                        <div class="col-2">{{ form.org|as_crispy_field }}</div>
+                        <div class="col-2">{{ form.src|as_crispy_field }}</div>
+                        <div class="col-2">{{ form.info|as_crispy_field }}</div>
+                        <div class="col-2">{{ form.extensionattribute15|as_crispy_field }}</div>
+                        <div class="col-2">{{ form.actiontype|as_crispy_field }}</div>
+                    </div>
+                    <!--AUTRES INFORMATIONS POUR L'AD-->
+                    <div class="row">
+                        <div class="col-6">{{ form.homedir|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.homedrive|as_crispy_field }}</div>
+                    </div>
+                    <!--INFORMATIONS SUR L'ENCODAGE APPLICATIF-->
+                    <div class="row">
+                        <div class="col-3">{{ form.usercre|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.datecre|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.userupd|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.dateupd|as_crispy_field }}</div>
+                    </div>
+                    <!--STATUT D'INTEGRATION AD-->
+                    <div class="row">
+                        <div class="col-4">{{ form.flagsyncad|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.datesyncad|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.msgad|as_crispy_field }}</div>
+                    </div>
+                    <!--STATUT D'INTEGRATION EXCHANGE-->
+                    <div class="row">
+                        <div class="col-4">{{ form.flagsyncexchange|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.datesyncexchange|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.msgexchange|as_crispy_field }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if request.user.is_staff %}
+                <!--BUTTONS part 1 ==================================================-->
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                    <a href="{% url 'refid-provinitad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+                    {% if mode == "update" %}
+                    <a href="/refid/refid_info_pdf/{{ user.samaccountname}}"  class="btn btn-error btn-primary">Generate PDF</a></td>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>  <!-- End Tab Panes IDENTITE -->
+
+            {% if request.user.is_superuser %}
+            <!-- Tab Panes SECURITE -->
+            <div id="menu-securite" class="container tab-pane fade"><br>
+                <!--SECURITE ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- TITRE GROUPES DE SECURITE-->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        GROUPES DE SECURITE
+                    </h6>
+                    <!--GROUPES DE SECURITE-->
+                    <div class="col-12">
+                        {{ form.groups|as_crispy_field }}
+                    </div>
+                    <div class="col-12">
+                        {{ form.groupsad|as_crispy_field }}
+                    </div>
+                </div>
+                <!--BUTTONS part 1 ==================================================-->
+<!--                <div class="btn-group">-->
+<!--                    <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">-->
+<!--                    <a href="{% url 'refid-provinitad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>-->
+<!--                </div>-->
+            </div>  <!-- End Tab Panes SECURITE-->
+
+            <!-- Tab Panes DISTRIBUTION -->
+            <div id="menu-distribution" class="container tab-pane fade"><br>
+                <!--DISTRIBUTION ==================================================-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- TITRE LISTES DE DISTRIBUTION-->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        LISTES DE DISTRIBUTION
+                    </h6>
+                    <!--LISTES DE DISTRIBUTION-->
+                    <div class="col-12">
+                        {{ form.distributionlist|as_crispy_field }}
+                    </div>
+                    <div class="col-12">
+                        {{ form.distributionlistad|as_crispy_field }}
+                    </div>
+                </div>
+                <!--BUTTONS part 1 ==================================================-->
+<!--                <div class="btn-group">-->
+<!--                    <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">-->
+<!--                    <a href="{% url 'refid-provinitad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>-->
+<!--                </div>-->
+            </div>  <!-- End Tab Panes DISTRIBUTION-->
+            {% endif %}
+        </div> <!-- End Tab Content -->
+
+    </form>
+
+    <br><br><br>
+
+</div>  <!-- End Container -->
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends './base.html' %}
+<!-- Index page for GDR Project-->
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">GDR - Gestion des Référentiels (Index)</p></h1>
+    </div>
+    <p>Liste des fonctionnalités</p>
+
+    <div class="list-group">
+        <a href="{% url 'refid-provad-list-view' %}"
+           class="list-group-item list-group-item-action list-group-item-primary">REFID Application</a>
+        <a href="{% url 'refid-provinitad-list-view' %}"
+           class="list-group-item list-group-item-action list-group-item-primary">REFID Reprise AD = Test pour l'initialisation</a>
+        <br>
+        <a href="{% url 'refid-cacherh-list-view' %}"
+           class="list-group-item list-group-item-action list-group-item-warning">Cache View - HR-ARNO</a>
+        <a href="{% url 'refid-cachead-list-view' %}"
+           class="list-group-item list-group-item-action list-group-item-warning">Cache View - AD-OSIRIS</a>
+        <a href="{% url 'refid-cacheevidian-list-view' %}"
+           class="list-group-item list-group-item-action list-group-item-warning">Cache View - IAM-EVIDIAN</a>
+
+        <br>
+
+        <!--{ if request.user.username in 'wynchr,suldil'  %}-->
+        {% if request.user.is_superuser %}
+<!--        <a href="{ url 'refid-search' %}"
+           class="list-group-item list-group-item-action list-group-item-secondary">REFID Search CBF</a>
+        <a href="{ url 'refid-search-view' %}"
+           class="list-group-item list-group-item-action list-group-item-secondary">REFID Search CBV</a>
+        <a href="{ url 'tests-index' %}"
+           class="list-group-item list-group-item-action list-group-item-secondary">TESTS</a>
+        <a href="{ url 'test-markdown-view' %}"
+           class="list-group-item list-group-item-action list-group-item-secondary">Markdown</a>
+-->
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

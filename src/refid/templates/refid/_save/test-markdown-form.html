@@ -1,0 +1,27 @@
+{% extends './base.html' %}
+<!--  To Do page for REFID Application-->
+{% block title %}
+Markdown
+{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">To Do</p></h1>
+    </div>
+
+    <table class="table table-dark">
+      <tbody>
+        <tr>
+          <td>
+            <p> {{content|safe}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<br><br><br>
+
+{% endblock content%}

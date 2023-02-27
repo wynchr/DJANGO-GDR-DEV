@@ -1,0 +1,26 @@
+{% extends './base.html' %}
+
+{% block title %}
+REFID user_create
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <h2>Création d'un compte AD</h2>
+
+    <table class="table table-responsive table-hover table-bordered table-primary table-sm" style="width:100%;font-size:100%;">
+
+        <caption>REFID_IOP_PROV_AD Table</caption>
+
+         <form method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <input type="submit" value="Créer">
+        </form>
+
+    </table>
+      <br><br>
+</div>
+
+{% endblock %}

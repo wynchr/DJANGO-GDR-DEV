@@ -1,0 +1,112 @@
+{% load static %}
+<!-- HEADER INCLUDE page for REFID Application-->
+<header>
+    <nav id="mainNavbar" class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/logo.png' %}" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+            </a>
+            <a class="navbar-brand" href="/">GDR-REFID</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="leftNavbar">
+                <ul class="navbar-nav me-auto">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown">Application</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'refid-application' %}">Application</a>
+                            <li><a class="dropdown-item" href="{% url 'refid-provinitad-list-view' %}">RepriseInit</a>
+                            <li><a class="dropdown-item" href="{% url 'refid-cacherh-list-view' %}">Cache View - HR-ARNO</a>
+                            <li><a class="dropdown-item" href="{% url 'refid-cachead-list-view' %}">Cache View - AD-OSIRIS</a>
+                            <li><a class="dropdown-item" href="{% url 'refid-cacheevidian-list-view' %}">Cache View - IAM-EVIDIAN</a>
+                          </ul>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown">Monitoring</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'refid-monitor-list-view' %}">Monitor</a>
+                            <li><a class="dropdown-item" href="{% url 'refid-monitor-compare' %}">Compare</a>
+                            <li><a class="dropdown-item" href="{% url 'refid-monitor-log' %}">Log</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown">Utilities</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Data Recovery</a>
+                            <li><a class="dropdown-item" href="#">Launch Scripts</a>
+                            <li><a class="dropdown-item" href="#">File Viewer</a>
+                            <li><a class="dropdown-item" href="#">Table Viewer</a>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="middleNavbar">
+                <ul class="navbar-nav me-auto">
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-info-todo' %}">ToDo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-info-readme' %}">ReadME</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'refid-info-about' %}">About</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="rightNavbar">
+                <ul class="navbar-nav me-auto">
+                    {% if request.user.is_authenticated %}
+<!--                    { if request.user.is_superuser %}-->
+                  <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown">Administration</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/gdr-admin">Administration</a>
+<!--                            <li><a class="dropdown-item" href="#">Reset password</a>-->
+                        </ul>
+                    </li>
+<!--                    { endif %}-->
+<!--                    { if request.user.is_authenticated %}-->
+                    <li class="nav-item">
+                        <a class="nav-link" id="logout" href="/logout" class="btn btn-danger btn-sm mt-2"
+                           style="margin-left: 10px; border-radius:50%" title="Logout">
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        {% if request.user.is_superuser %}
+                        <a class="nav-link" style="color: #0dcaf0">[ADMIN:{{ request.user|upper }}]</a>
+                        {% elif request.user.is_staff %}
+                        <a class="nav-link" style="color: #0dcaf0">[USER:{{ request.user|upper }}]</a>
+                        {% else %}
+                        <a class="nav-link" style="color: #0dcaf0">[user:{{ request.user|upper }}]</a>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+

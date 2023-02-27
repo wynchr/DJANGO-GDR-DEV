@@ -1,0 +1,141 @@
+{% extends './base.html' %}
+<!-- Cache EVIDIAN List View page for REFID Application-->
+{% block title %}
+Cache EVIDIAN
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <form method="get" action="{% url 'refid-cacheevidian-list-view' %}" style="width:100%;font-size:75%;">
+
+        <!-- Search Fields -->
+        <div class="card border border-dark p-3 mb-3">
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="form-label mb-1">Nom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">Prénom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">N°National</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">User Login</div>
+                </div>
+            </div>
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_nom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_prenom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_niss }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_userid }}</div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-center" value="Recherche">
+        </div>
+
+
+    </form>
+
+    <hr>
+    <!-- Input Search Outside -->
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="input-group input-group-sm">
+                <input class="form-control" type="search" id="search" placeholder="Global search ..."
+                       aria-label="Search">
+                <a href="{% url 'refid-cacheevidian-list-view' %}" class="btn btn-secondary btn-sm"><i
+                        class="fas fa-sync-alt"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <table id="tableCacheEVIDIANList" class="table table-hover table-striped display compact nowrap"
+           style="width:100%;font-size:75%;">
+        <thead class="table-primary">
+        <tr>
+            <th>cn</th>
+            <th>stpadlogin</th>
+            <th>stpniss</th>
+            <th>employeeid</th>
+            <th>sn, givenname</th>
+<!--            <th>givenname</th>-->
+            <!--            <th>stpinaminumber</th>-->
+            <!--            <th>osirisevidiansex</th>-->
+            <!--            <th>stpbirthdate</th>-->
+            <!--            <th>preferredlanguage</th>-->
+            <th>company</th>
+            <th>physicaldeliveryofficename</th>
+            <th>businesscategory</th>
+            <th>employeetype</th>
+            <th>osirishrcontractstatus</th>
+            <!--            <th>osirishrcontractstartdate</th>-->
+            <th>osirishrcontractenddate</th>
+            <th>chuidoriginsource</th>
+            <!--            <th>distinguishedname</th>-->
+            <!--            <th>evdidmuseridrep</th>-->
+            <th>evdidmstate</th>
+            <th>evdpmschedulerstatus</th>
+            <th>whencreated</th>
+            <th>whenchanged</th>
+            <th>enatelbegintime</th>
+            <th>enatelendtime</th>
+            <!--            <th>messages</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        {% if users %}
+        {% for user in users %}
+        <tr>
+            <td><span class="fa fa-user-md"></span>&nbsp;<a href="/refid/cacheevidian-detail-view/{{ user.cn }}">{{ user.cn }}</a></td>
+            <td>{{ user.stpadlogin }}</td>
+            <td>{{ user.stpniss }}</td>
+            <td>{{ user.employeeid }}</td>
+            <td>{{ user.sn }}, {{ user.givenname }}</td>
+<!--            <td>{ user.givenname }}</td>-->
+            <!--            <td>{{ user.stpinaminumber }}</td>-->
+            <!--            <td>{{ user.osirisevidiansex }}</td>-->
+            <!--            <td>{{ user.stpbirthdate }}</td>-->
+            <!--            <td>{{ user.preferredlanguage }}</td>-->
+            <td>{{ user.company }}</td>
+            <td>{{ user.physicaldeliveryofficename }}</td>
+            <td>{{ user.businesscategory }}</td>
+            <td>{{ user.employeetype }}</td>
+            <td>{{ user.osirishrcontractstatus }}</td>
+            <!--            <td>{{ user.osirishrcontractstartdate | slice:":10" }}</td>-->
+            <td>{{ user.osirishrcontractenddate | slice:":10" }}</td>
+            <td>{{ user.chuidoriginsource }}</td>
+            <!--            <td>{{ user.distinguishedname }}</td>-->
+            <!--            <td>{{ user.evdidmuseridrep }}</td>-->
+            <td>{{ user.evdidmstate }}</td>
+            <td>{{ user.evdpmschedulerstatus }}</td>
+            <td>{{ user.whencreated | slice:":10" }}</td>
+            <td>{{ user.whenchanged | slice:":10" }}</td>
+            <td>{{ user.enatelbegintime | slice:":10" }}</td>
+            <td>{{ user.enatelendtime | slice:":10" }}</td>
+            <!--            <td>{{ user.messages }}</td>-->
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>No user are available.</p>
+        {% endif %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

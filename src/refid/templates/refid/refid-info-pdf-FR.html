@@ -1,0 +1,66 @@
+{% extends './base_page.html' %}
+{% load static %}
+
+<!--  Generate Info for user-->
+
+{% block title %}
+PDF for the user
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4"><img src="{% static 'images/logochub.png' %}" alt="Avatar Logo" style="width:500px;"></div>
+        <div class="col-4"></div>
+        <div class="col-4"><img src="{% static 'images/logohuderf.png' %}" alt="Avatar Logo" style="width:500px;"></div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-4"><span><b>{{user.quality}}</b>.</span> <span><b>{{user.usualsn}}</b></span>, <span><b>{{user.usualgivenname}}</b></span></div>
+        <div class="col-4"><b>mail:</b><span><b>{{user.mail}}</b></span></div>
+        <div class="col-4"><b>Bruxelles, </b><span><b>{% now "d/m/Y" %}</b></span></div>
+    </div>
+
+    <hr>
+
+    <div class="card border border-dark p-1 mb-1">
+        <h3><p class="text-center"><b><u>Concerne</u> : votre demande d'un code d'accès Windows</b></p></h3>
+    </div>
+
+    <br>
+
+    <div class="card border border-dark p-3 mb-3">
+        <p>Le user à introduire est : <span style="color:blue;">{{user.samaccountname}}</span></p>
+        <p>Votre mot de passe est : <span style="color:blue;">{{psw}}</span></p>
+        <br>
+        <p><u>Rappel</u> : pour introduire des chiffres avec le pavé numérique, il faut activer la touche
+            <mark>NumLock</mark>
+        </p>
+        <br>
+        <p><b>Prière de ne pas laisser traîner ce document, s'il vous plaît, il y va de la sécurité et de la
+            confidentialité du système.</b></p>
+        <br>
+        <p>Merci</p>
+        <p style="text-align:center;"><i>Helpdesk : 5555</i></p>
+    </div>
+
+    <br>
+
+    <div class="card border border-dark p-3 mb-3">
+        <p><u>Consignes pour la création du mot de passe :</u></p>
+        <li>personnel et confidentiel</li>
+        <li>à modifier dès votre 1ère connexion</li>
+        <li>longueur minimale : 12 caractères</li>
+        <li>doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère non alphanumérique</li>
+    </div>
+
+    <div class="row">
+        <div class="col-12"><input type="submit" class="btn btn-primary btn-center" value="Print"
+                                   onclick="window.print()"></div>
+    </div>
+
+</div>
+
+
+{% endblock %}

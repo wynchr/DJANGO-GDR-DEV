@@ -1,0 +1,25 @@
+{% extends './base.html' %}
+<!-- ReadMe page for REFID Application-->
+{% block title %}
+ReadMe
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">Read.me</p></h1>
+    </div>
+
+    <table class="table table-dark">
+        <tbody>
+        <tr>
+            <td>
+                <p> {{contents|safe}}</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br><br><br>
+{% endblock %}

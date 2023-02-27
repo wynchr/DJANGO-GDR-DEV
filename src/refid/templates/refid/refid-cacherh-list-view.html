@@ -1,0 +1,118 @@
+{% extends './base.html' %}
+<!-- Monitor List View page for REFID Application-->
+{% block title %}
+Cache RH
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor%}
+    </div>
+    {% endif %}
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <form method="get" action="{% url 'refid-cacherh-list-view' %}" style="width:100%;font-size:75%;">
+
+        <!-- Search Fields -->
+        <div class="card border border-dark p-3 mb-3">
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="form-label mb-1">Nom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">Prénom</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">N°National</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-label mb-1">N°Matricule</div>
+                </div>
+            </div>
+            <div class="row flex-row">
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_nom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_prenom }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_niss }}</div>
+                </div>
+                <div class="col-3">
+                    <div class="text-input mb-3">{{ form.q_matricule }}</div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-center" value="Recherche">
+        </div>
+
+
+    </form>
+
+    <hr>
+    <!-- Input Search Outside -->
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="input-group input-group-sm">
+                <input class="form-control" type="search" id="search" placeholder="Global search ..."
+                       aria-label="Search">
+                <a href="{% url 'refid-cacherh-list-view' %}" class="btn btn-secondary btn-sm"><i
+                        class="fas fa-sync-alt"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <table id="tableCacheRHList" class="table table-hover table-striped display compact nowrap"
+           style="width:100%;font-size:75%;">
+        <thead class="table-primary">
+        <tr>
+            <th>matricule</th>
+            <th>registre_national</th>
+            <th>hopital</th>
+            <th>nom</th>
+            <th>sexe</th>
+            <th>date_naissance</th>
+            <th>langue</th>
+            <th>date_debut_contrat</th>
+            <th>date_fin_contrat</th>
+            <th>statut_contrat</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if users %}
+        {% for user in users %}
+        <tr>
+            <td><span class="fa fa-user-md"></span>&nbsp;<a
+                    href="/refid/cacherh-detail-view/{{ user.v100_rh_matricule }}">{{ user.v100_rh_matricule }}</a></td>
+            <td>{{ user.v100_rh_registre_national }}</td>
+            <td>{{ user.v200_contrat_code_societe }}</td>
+
+            <td>{{ user.v100_rh_nom }}, {{ user.v100_rh_prenom }}</td>
+
+            <td>{{ user.v100_rh_sexe }}</td>
+            <td>{{ user.v100_rh_date_naissance | slice:":10"}}</td>
+            <td>{{ user.v100_rh_langue }}</td>
+            <td>{{ user.v300_rh_date_debut_contrat | slice:":10"}}</td>
+            <td>{{ user.v300_rh_date_fin_contrat | slice:":10"}}</td>
+            <td>{{ user.v100_rh_statut_contrat }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>No user are available.</p>
+        {% endif %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

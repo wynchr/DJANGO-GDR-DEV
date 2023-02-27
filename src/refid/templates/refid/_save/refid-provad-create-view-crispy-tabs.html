@@ -1,0 +1,226 @@
+{% extends './base.html' %}
+{% load crispy_forms_tags %}
+<!--
+=======================================================================================================================
+.DESCRIPTION
+    ProvAd Create View page for REFID Application
+
+.FUNCTIONALITY
+    Version	Date		Who	Comment
+    -------	----		---	-------
+    1.0		01/01/2023  CWY	Initial Version
+
+.COMMENTS
+    .
+=======================================================================================================================
+-->
+{% block title %}
+User Create/Update
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3"”>
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    {% if mode == "update" %}
+    <h4 class="text-center" style="color:Blue">
+        {{ user.sn }}, {{ user.givenname }} ({{ user.samaccountname }} @ {{ user.company }})
+    </h4>
+    {% endif %}
+
+    <form method="POST">
+    {% csrf_token %}
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-pills nav-fill nav-justified flex-column flex-sm-row" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#menu-profil">PROFIL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu-compte">COMPTE AD/EXCHANGE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu-systeme">SYSTEME</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!--PROFIL ==================================================-->
+            <div id="menu-profil" class="container tab-pane active"><br>
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- PROFIL DE L'UTILISATEUR ----------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        PROFIL UTILISATEUR
+                    </h6>
+                    <!--IDENTIFIANT UNIQUE DE L'UTILISATEUR-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-6">{{ form.samaccountname|as_crispy_field }}</div>-->
+<!--                        <div class="col-6">{{ form.password|as_crispy_field }}</div>-->
+<!--                    </div>-->
+<!--                    <hr>-->
+                    <!--SIGNALETIQUE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.sn|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.givenname|as_crispy_field }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">{{ form.preferredlanguage|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.gender|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.birthday|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--PROFIL HÔPITAL-->
+                    <div class="row">
+                        <div class="col-4">{{ form.company|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.physicaldeliveryofficename|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.department|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--PROFIL EMPLOYEE-->
+                    <div class="row">
+                        <div class="col-4">{{ form.businesscategory|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.employeetype|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--AUTRES IDENTIFIANTS-->
+                    <div class="row">
+                        <div class="col-4">{{ form.employeenumber|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.extensionattribute1|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.extensionattribute11|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--TELEPHONIE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.telephonenumber|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.pager|as_crispy_field }}</div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                    <a href="{% url 'refid-provad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+                    <a href="/refid/provad-update-view/{{ user.samaccountname}}/#menu-profil" class="btn btn-error btn-warning">Reset</a>
+                </div>
+            </div> <!-- menu-profil -->
+            <!--COMPTE AD/EXCHANGE ==================================================-->
+            <div id="menu-compte" class="container tab-pane fade"><br>
+                <div class="card border border-dark p-3 mb-3">
+                     <!-- INFORMATION SUR LE COMPTE UTILISATEUR (AD/EXCHANGE) ------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        COMPTE UTILISATEUR
+                    </h6>
+                    <!--IDENTIFIANT UNIQUE DE L'UTILISATEUR-->
+                    <div class="row">
+                        <div class="col-6">{{ form.samaccountname|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.password|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--COMPTE AD-->
+                    <div class="row">
+                        <div class="col-3">{{ form.enableaccountexpires|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.accountexpires|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.changepasswordatlogon|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.enabled|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--COMPTE EXCHANGE-->
+                   <div class="row">
+                        <div class="col-6">{{ form.enablemail|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.mail|as_crispy_field }}</div>
+                   </div>
+<!--                    <hr>-->
+                  <!--ZONES D'INFORMATION-->
+                    <div class="col-12">
+                        {{ form.info|as_crispy_field }}
+                        {{ form.description|as_crispy_field }}
+                    </div>
+<!--                    <hr>-->
+                    <!--METADATA-->
+                    <div class="col-12">
+                        {{ form.metadata|as_crispy_field }}
+                    </div>
+                    <!--GROUPES DE SECURITE-->
+                    <div class="col-12">
+                        {{ form.groups|as_crispy_field }}
+                    </div>
+                    <!--LISTES DE DISTRIBUTION-->
+                    <div class="col-12">
+                        {{ form.distributionlist|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                    <a href="{% url 'refid-provad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+                    <a href="/refid/provad-update-view/{{ user.samaccountname}}/#menu-compte" class="btn btn-error btn-warning">Reset</a>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-error btn-primary">Reset Password</a>
+                    <a href="#" class="btn btn-error btn-info">Send PDF Mail</a>
+                 </div>
+            </div> <!--menu-compte-->
+            <!--SYSTEME ==================================================-->
+            {% if request.user.is_staff %}
+            <div id="menu-systeme" class="container tab-pane fade"><br>
+                <div class="card border border-dark p-3 mb-3">
+                   <!-- INFORMATION SUR LE SYSTEME DE PROVISIONNEMENT ----------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        SYSTEME
+                    </h6>
+                    <!--ENVIRONMENT DE TRAVAIL - ACTION DEMANDEE-->
+                    <div class="row">
+                        <div class="col-3">{{ form.env|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.org|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.extensionattribute15|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.actiontype|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--AUTRES INFORMATIONS POUR L'AD-->
+                    <div class="row">
+                        <div class="col-6">{{ form.homedir|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.homedrive|as_crispy_field }}</div>
+                    </div>
+                    <hr>
+                    <!--INFORMATIONS SUR L'ENCODAGE APPLICATIF-->
+                    <div class="row">
+                        <div class="col-3">{{ form.usercre|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.datecre|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.userupd|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.dateupd|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--STATUT D'INTEGRATION AD-->
+                    <div class="row">
+                        <div class="col-4">{{ form.flagsyncad|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.datesyncad|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.msgad|as_crispy_field }}</div>
+                    </div>
+<!--                    <hr>-->
+                    <!--STATUT D'INTEGRATION EXCHANGE-->
+                    <div class="row">
+                        <div class="col-4">{{ form.flagsyncexchange|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.datesyncexchange|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.msgexchange|as_crispy_field }}</div>
+                    </div>
+                    <hr>
+                    <!--AD OBJECTS KEYS-->
+                    <div class="row">
+                        <div class="col-6">{{ form.objectsid|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.objectguid|as_crispy_field }}</div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                    <a href="{% url 'refid-provad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+                    <a href="/refid/provad-update-view/{{ user.samaccountname}}/#menu-systeme" class="btn btn-error btn-warning">Reset</a>
+                </div>
+            </div> <!--menu-systeme-->
+        </div> <!-- tab-content -->
+        {% endif %}
+        <br><br><br>
+    </form>
+
+</div>  <!--container-->
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends './base.html' %}
+<!--
+=======================================================================================================================
+.DESCRIPTION
+    Test Form page for REFID Application
+
+.FUNCTIONALITY
+    Version	Date		Who	Comment
+    -------	----		---	-------
+    1.0		01/01/2023  CWY	Initial Version
+
+.COMMENTS
+    .
+=======================================================================================================================
+-->
+{% block title %}
+REFID testform
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-3">
+  <h2>Signalétique</h2>
+
+  <form action="{% url 'refid-index' %}">
+      <!-- Nom -->
+    <div class="mb-3 mt-3">
+      <label for="prenom">Nom:</label>
+      <input type="text" class="form-control" id="nom" placeholder="Enter nom" name="nom" value="{{ user.nom }}">
+    </div>
+    <!-- Prénom -->
+    <div class="mt-3 mb-3">
+      <label for="prenom">Prénom:</label>
+      <input type="text" class="form-control" id="prenom" placeholder="Enter prenom" name="prenom" value="{{ user.prenom }}">
+    </div>
+    <!-- Sexe -->
+    <div>
+        <label>Sexe:</label><br>
+    </div>
+    {% if user.sexe == "M" %}
+        <div class="form-check">
+          <label class="form-check-label" for="sexe1">Homme</label>
+          <input type="radio" class="form-check-input" id="sexe1" name="optsexe" value="M" checked>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="sexe2">Femme</label>
+          <input type="radio" class="form-check-input" id="sexe2" name="optsexe" value="F">
+        </div>
+    {% elif user.sexe == "F" %}
+        <div class="form-check">
+          <label class="form-check-label" for="sexe1">Homme</label>
+          <input type="radio" class="form-check-input" id="sexe1" name="optsexe" value="M">
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="sexe2">Femme</label>
+          <input type="radio" class="form-check-input" id="sexe2" name="optsexe" value="F" checked>
+        </div>
+    {% else %}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Danger!</strong> Veuillez choisir le sexe !
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="sexe1">Homme</label>
+          <input type="radio" class="form-check-input" id="sexe1" name="optsexe" value="M">
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="sexe2">Femme</label>
+          <input type="radio" class="form-check-input" id="sexe2" name="optsexe" value="F">
+        </div>
+
+    {% endif %}
+    <!-- Date de Naissance -->
+    <div class="mt-3 mb-3">
+      <label for="dnais">Date de Naissance:</label>
+      <input type="date" class="form-control" id="dnais" placeholder="Enter dnais" name="dnais" value={{ user.dnais }}>
+
+    </div>
+    <!-- Email -->
+    <div class="mb-3 mt-3">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ user.email }}">
+    </div>
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+
+{% endblock %}

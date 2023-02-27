@@ -1,0 +1,25 @@
+username,nom,prenom,email,password,is_staff
+wynchr,Wyns,Christian,christian.wyns@chu-brugmann.be,pbkdf2_sha256$390000$sdROL3jeBIaHX8YQsVvRb4$rdTOj0eLHcvx1qu8s+9tEFaeAho2fHNHJ0lBRsC9zEA=,True
+narlau,NARAINSAMY,Laurence,Laurence.NARAINSAMY@brustp.be,pbkdf2_sha256$390000$coSK7IBN129O04ddaRDYnW$B3QKxmpowq1+/RXYFpavA9T6D4HP7/CMDD4BcD3ZLU4=,True
+wetsar,Wetterene,Sarah,sarah.wetterene@chu-brugmann.be,pbkdf2_sha256$390000$1kQrF9obfEKyTL5g4xOLHD$QP92IbJiErcw7OLOFLAi0nPsUx+fcarLHcQb9+lDrvo=,True
+parmar,Paron,Marc,marc.paron@chu-brugmann.be,pbkdf2_sha256$390000$QCoPuuKtaRxqMlwXOMX5Uw$utETpJ4mCSxLZlWpRidOduAMUHpzq3Ys+cWUwlJCbOs=,True
+pirjoh,Piron,Johan,johan.piron@chu-brugmann.be,pbkdf2_sha256$390000$zaBoTo79iSf7YSu920l7Eg$edprrfvYbAW5HRwDpcQxcxEwc5I76THaZnrvWpNk7yI=,True
+dufben,Dufrene,Benoit,benoit.dufrene@chu-brugmann.be,pbkdf2_sha256$390000$aw06A6nCAb1BfWKUcLhxT0$xNDIjSiFAzPAAIDUyh/G0BpJhr4gGjRA0LML4CdT2iw=,True
+administrator,GDR,Administration,christian.wyns@chu-brugmann.be,pbkdf2_sha256$390000$pSJgv7bwJgk9jwUatkC7w2$3wlwmxHDuEVTI7Qeu0rG/ueQsqbCzeIlx+sHRRdaVWM=,True
+wynchruser,Wyns User,Christian,christian.wyns@chu-brugmann.be,pbkdf2_sha256$390000$cYCzxn2dDWtkrHR3hJJTGo$cTUPwnmBhnfrUXaNYqT8hwhMmn1HVYxPnGcK+QlzOfo=,True
+wynchradm,Wyns Admin,Christian,christian.wyns@chu-brugmann.be,pbkdf2_sha256$390000$aKuPOBZK9Kx0lPBMRvs6aO$b0TmJwf5Lmj6qqCkJZy6gOisNGCSwgoijqLh3ieJpVo=,True
+vtreelm,van Treel,Marc,marc.vantreel@chu-brugmann.be,pbkdf2_sha256$390000$xgWouPC2OUvCVMMnN4V0UH$6qu3/Rz6UA9PMKjpcrUmnbIrkHcthwvmsWgTmYO8CTc=,True
+vcaann,VAN CAUWENBERGH,An,An.VANCAUWENBERGH@brustp.be,pbkdf2_sha256$390000$qyYtmLlKeUqCfknrD8qjH7$vVvJxl/XqQUAt5HX5S0jekiTYdpmfPLzah01rgNUi30=,True
+soukal,SOULTAN MOHAMED,Kaled,Kaled.SOULTANMOHAMED@brustp.be,pbkdf2_sha256$390000$IRMEDwLScEWSkTHXScrdbI$jeviWQ2rC/pT3RZoMgIwT8z3e5GVF750iheX/KwkUlM=,True
+suldil,Sule,Dilek,dilek.sule@chu-brugmann.be,pbkdf2_sha256$390000$EL8PqCE8ilvPmuLSmcfG6J$kCLh68LMNY+eNb8arx2jgY1LzhANmN5E+JFf8Iz6hnk=,True
+operator,GDR,Operator,christian.wyns@chu-brugmann.be,pbkdf2_sha256$390000$vA2z00rqhPfwQ1LXRyjDfF$Busk8sYJh2ZmoIpZs8PWi28tf6ZgM6ApzkYjkj9eal0=,True
+akbnur,AKBAS,Nursal,Nursal.AKBAS@brustp.be,pbkdf2_sha256$390000$ZIoWReqHun8hOyugq7eOWr$cp22iGW4LDg4120/zmdrIQuLtQl4b2Z0fCGHr6ZEiII=,True
+anspgae,ANSPACH,Gael,Gael.Anspach@hubruxelles.be,pbkdf2_sha256$390000$PCv01gRtU10M0KyeBBWIvz$e0GRAyvDFOmHzQjXuelo698ChwmgEHk+5nN8jfumZHM=,True
+desscli,DESSEAER,Claire,Claire.DESSEAER@hubruxelles.be,pbkdf2_sha256$390000$oEzBgmI9V5iSrkku6qMKQq$gclXnUQ6Qotr+191Gz9yzdVx7iNcZ8BFiOx2V3Mp9+E=,True
+boutnat,BOUTET,Nathalie,Nathalie.BOUTET@hubruxelles.be,pbkdf2_sha256$390000$Q9AkjodyBWPIHgbsF9J8Pi$JTQhEJYR/3hXwcI7VPl20EtQLP/q3YnnOwq6KNRiKDU=,True
+muessar,MUES,Sara,Sara.MUES@hubruxelles.be,pbkdf2_sha256$390000$NnUlo7jQCZ8ZSUtUwZa2lv$rf2e1Q+dkDB26KLO0cLirOKmiPz2j39gtGdvN/ac63k=,True
+deroeva,DERON,Eva,Eva.DERON@hubruxelles.be,pbkdf2_sha256$390000$glDKeghF6xEvzR2dUtvvqk$yA8evpjcax321t6eoyy8zZZQL+K3qwJpbbCbPQ+cJVk=,True
+thisab,THIBOU,Sabrina,Sabrina.THIBOU@chu-brugmann.be,pbkdf2_sha256$390000$E1tRsWZepty3lBUncJ74Tz$tjOv7b9nNtuVgHmwZA0bHADdnL2pmywKUQML5pEOYM4=,True
+wynchroperator,Wyns (OPERATOR),Christian,christian.wyns@chu-brugmann.be,pbkdf2_sha256$390000$JbXqhT6C69b2T7Uq6u0lul$Nsk1KGXC3tY2xoU7rRx9UMdbxd3v539igGFTmcMfqdI=,True
+muylau,MUYLLE,Laurent,Laurent.MUYLLE@brustp.be,pbkdf2_sha256$390000$UJJ44GReygSy4JmGydg5QA$YITxt+TAz5cnRxV3+dwW+oRub+uo9r9EVJVx9U5u8rU=,True
+suldiluser,Sule,Dilek,dilek.sule@chu-brugmann.be,pbkdf2_sha256$390000$wXL4J1g1KVNi3ZRRYbLeCw$EaY6a0o+zpOvPIQCuKe2ztIHj41MS/+DQsSQBiVf8oA=,True

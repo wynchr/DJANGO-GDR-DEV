@@ -1,0 +1,92 @@
+{% extends './base.html' %}
+<!-- Monitor List View page for REFID Application-->
+{% block title %}
+Monitor View
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <p>Statut des transactions d'intégration AD/Exchange</p>
+
+    <!-- Input Search Outside -->
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="input-group input-group-sm">
+                <input class="form-control" type="search" id="search" placeholder="Global search ..."
+                       aria-label="Search">
+                <a href="{% url 'refid-monitor-list-view' %}" class="btn btn-secondary btn-sm"><i
+                        class="fas fa-sync-alt"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <table id="tableMonitorList" class="table table-hover table-striped display compact nowrap"
+           style="width:100%;font-size:75%;">
+        <thead class="table-primary">
+        <tr>
+            <th>UserID</th>
+            <th>Nom</th>
+
+            <th>Etat?</th>
+            <th>Mail?</th>
+            <th>Expires?</th>
+            <th>ExpiresDate</th>
+            <th>PswChg?</th>
+
+            <th>UserUpd</th>
+            <th>DateUpd</th>
+            <th>SyncAD?</th>
+            <th>DateAD</th>
+            <th>SyncEXCH?</th>
+            <th>DateEXCH</th>
+
+            <th>Action</th>
+            <th>infoIAM</th>
+            <th>infoREFID</th>
+            <th>Org</th>
+            <th>Env</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if users %}
+        {% for user in users %}
+        <tr>
+            <td><span class="fa fa-user-md"></span>&nbsp;<a href="/refid/monitor-detail-view/{{ user.samaccountname}}">{{ user.samaccountname }}</a></td>
+            <td>{{ user.sn }}, {{ user.givenname }}</td>
+
+            <td>{{ user.enabled }}</td>
+            <td>{{ user.enablemail }}</td>
+            <td>{{ user.enableaccountexpires }}</td>
+            <td>{{ user.accountexpires | slice:":10"}}</td>
+            <td>{{ user.changepasswordatlogon }}</td>
+
+            <td>{{ user.userupd }}</td>
+            <td>{{ user.dateupd }}</td>
+            <td>{{ user.flagsyncad }}</td>
+            <td>{{ user.datesyncad }}</td>
+            <td>{{ user.flagsyncexchange }}</td>
+            <td>{{ user.datesyncexchange }}</td>
+
+            <td>{{ user.actiontype }}</td>
+            <td>{{ user.info }}</td>
+            <td>{{ user.extensionattribute15 }}</td>
+            <td>{{ user.org }}</td>
+            <td>{{ user.env }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>No user are available.</p>
+        {% endif %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

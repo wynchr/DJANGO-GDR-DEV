@@ -1,0 +1,79 @@
+{% extends './base.html' %}
+<!-- ProvAd List View page for REFID Application-->
+{% block title %}
+Liste utilisateurs
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <div class="btn-group">
+        <a href="{% url 'refid-provad-create-view' %}" class="btn btn-primary">Crée un User</a>
+<!--        <button class="btn btn-secondary" onclick="reloadPage()">Reload</button>-->
+    </div>
+
+    <hr>
+
+    <!-- Input Search Outside -->
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="input-group input-group-sm">
+                <input class="form-control" type="search" id="search" placeholder="Global search ..." aria-label="Search">
+                <a href="{% url 'refid-provad-list-view' %}" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <table id="tableProvadList" class="table table-hover table-striped display compact nowrap" style="width:100%;font-size:75%;">
+    <thead class="table-primary">
+    <tr>
+        <th>UserID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Hôpital</th>
+        <th>Site</th>
+        <th>Department</th>
+        <th>Catégorie</th>
+        <th>Type</th>
+        <th>Expiration</th>
+        <th>Actif</th>
+        <th>DateUpdate</th>
+        <th>AD</th>
+        <th>EXCHANGE</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if users %}
+    {% for user in users %}
+       <tr>
+        <td><a href="/refid/provad-update-view/{{ user.samaccountname}}">{{ user.samaccountname }}</td>
+        <td>{{ user.sn }}</td>
+        <td>{{ user.givenname }}</td>
+        <td>{{ user.company }}</td>
+        <td>{{ user.physicaldeliveryofficename }}</td>
+        <td>{{ user.department }}</td>
+        <td>{{ user.businesscategory }}</td>
+        <td>{{ user.employeetype }}</td>
+        <td>{{ user.accountexpires | slice:":10"}}</td>
+        <td>{{ user.enabled }}</td>
+        <td>{{ user.dateupd }}</td>
+        <td>{{ user.flagsyncad }}</td>
+        <td>{{ user.flagsyncexchange }}</td>
+      </tr>
+    {% endfor %}
+    {% else %}
+        <p>No user are available.</p>
+    {% endif %}
+    </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

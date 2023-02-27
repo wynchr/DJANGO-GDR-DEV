@@ -1,0 +1,29 @@
+<!--popup.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popup</title>
+
+</head>
+<body>
+
+
+<div id="popup" style="display:none">
+    <p> This is a pop-up!</p>
+    <button id="close-button">Close</button>
+</div>
+<button id="open-button">Open</button>
+
+<script>
+    $(document).ready(function () {
+        $("#open-button").click(function () {
+            $("#popup").show();
+        });
+        $("#close-button").click(function () {
+            $("#popup").hide();
+        });
+    });
+</script>
+</body>
+</html>

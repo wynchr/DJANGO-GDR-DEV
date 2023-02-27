@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+<!--  To Do page for REFID Application-->
+{% block title %}
+Log
+{% endblock %}
+
+{% block content %}
+
+{% comment %} <P> {{contents|safe}}</P> {% endcomment %}
+
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">Log</p></h1>
+    </div>
+    <p>Log contenant la trace des transactions du service de provisionning</p>
+    <table class="table table-dark">
+      <tbody>
+        <tr>
+          <td style="font-size: smaller; font-family: 'Courier New',sans-serif;">
+            <p> {{ contents | linebreaks }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<br><br><br>
+{% endblock %}

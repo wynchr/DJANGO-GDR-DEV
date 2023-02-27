@@ -1,0 +1,27 @@
+CN=Tous les medecins de Brugmann ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tous les medecins de Brien ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tous les medecins de Horta ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tous les medecins de Reine Astrid ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le nursing de Brien ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le nursing de Horta ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le nursing de Reine Astrid ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le PATO de Brien,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le PATO de Horta,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le PATO de Reine Astrid,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tous les medecins de l Huderf ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le nursing de l Huderf ,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Tout le PATO de l Huderf,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;LISTE
+CN=Wireless Users,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=OSIRIS - OneSign - Users,OU=Imprivata,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=OSIRIS - MVSL - Medical,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=OSIRIS - MVSL - Nursing,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=OSIRIS - MVSL - Paramedical,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=OSIRIS - Evidian - All Users,OU=Evidian,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=OSIRIS - Office 365 - Population RH,OU=Office 365,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=Brugmann - MonitorNow - Users,OU=MonitorNow,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=TS Gateway Authorized Brugmann,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=TS Gateway Authorized Huderf,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+CN=OSIRIS - FGP - Individual Users,OU=Fine-Grained Password,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be;GROUPE
+MAPIService;EXCHANGE
+OWAService;EXCHANGE
+quota2GBService;EXCHANGE

@@ -1,0 +1,25 @@
+{% extends './base.html' %}
+<!-- About page for REFID Application-->
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">About</p></h1>
+    </div>
+
+    <table class="table table-dark">
+      <tbody>
+        <tr>
+          <td>
+            <P> {{contents|safe}}</P>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<br><br><br>
+{% endblock %}

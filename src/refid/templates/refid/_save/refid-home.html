@@ -1,0 +1,67 @@
+{% extends './base.html' %}
+<!--
+=======================================================================================================================
+.DESCRIPTION
+    Home page for REFID Application
+
+.FUNCTIONALITY
+    Version	Date		Who	Comment
+    -------	----		---	-------
+    1.0		01/01/2023  CWY	Initial Version
+
+.COMMENTS
+    .
+=======================================================================================================================
+-->
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">Home</p></h1>
+    </div>
+  <p>Liste des fonctionnalités</p>
+
+  <p> {{ title }}</p>
+
+  <div class="list-group">
+
+<!--    <a href="{% url 'refid-index' %}" class="list-group-item list-group-item-action list-group-item-primary">REFID index</a>-->
+<!--    <a href="{% url 'refid-home' %}" class="list-group-item list-group-item-action list-group-item-primary">REFID home</a>-->
+<!--    <a href="{% url 'refid-provad-create' %}" class="list-group-item list-group-item-action list-group-item-primary">REFID Create ProvAd</a>-->
+<!--    <a href="{% url 'refid-provad-create-view' %}" class="list-group-item list-group-item-action list-group-item-primary">REFID Create ProvAd (CBS)</a>-->
+
+
+    <br>
+
+<!--    <a href="{% url 'refid-monitor-list' %}" class="list-group-item list-group-item-action list-group-item-secondary">Monitoring</a>-->
+    <a href="{% url 'refid-monitor-list-view' %}" class="list-group-item list-group-item-action list-group-item-secondary">Monitoring (CBS)</a>
+<!--    <a href="{% url 'refid-comparison' %}" class="list-group-item list-group-item-action list-group-item-secondary">Comparison</a>-->
+<!--    <a href="{% url 'refid-readme' %}" class="list-group-item list-group-item-action list-group-item-secondary">ReadME</a>-->
+<!--    <a href="{% url 'refid-about' %}" class="list-group-item list-group-item-action list-group-item-secondary">About</a>-->
+
+
+
+  </div>
+
+    <br>
+
+  <div class="list-group">
+<!--    <a href="{% url 'refid-test-form' %}" class="list-group-item list-group-item-action list-group-item-warning">REFID testform (Test Generic Form)</a>-->
+  </div>
+
+  <br>
+
+  <div class="list-group">
+<!--    <a href="/admin" class="list-group-item list-group-item-action list-group-item-danger">Administration</a>-->
+  </div>
+  <br>
+</div>
+
+
+
+{% endblock %}

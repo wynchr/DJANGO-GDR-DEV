@@ -1,0 +1,35 @@
+INSTITUTION	SITE	EMPLOYEETYPE	SAMACCOUNTNAME	DISTINGUISHEDNAME
+CHU-BRUGMANN	ASTRID	ADMINISTRATIF	Tout le PATO de Reine Astrid	CN=Tout le PATO de Reine Astrid,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	ASTRID	MEDICAL	Tous les medecins de Brugmann	CN=Tous les medecins de Brugmann,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	ASTRID	MEDICAL	Tout le nursing de Reine Astrid	CN=Tout le nursing de Reine Astrid,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	ASTRID	NURSING	Tout le nursing de Reine Astrid	CN=Tout le nursing de Reine Astrid,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	ASTRID	OTHER	Tout le PATO de Reine Astrid	CN=Tout le PATO de Reine Astrid,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	ASTRID	PARAMEDICAL	Tout le PATO de Reine Astrid	CN=Tout le PATO de Reine Astrid,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	ASTRID	TECHNIQUE	Tout le PATO de Reine Astrid	CN=Tout le PATO de Reine Astrid,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	BRIEN	ADMINISTRATIF	Tout le PATO de Brien	CN=Tout le PATO de Brien,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	BRIEN	MEDICAL	Tous les medecins de Brien	CN=Tous les medecins de Brien,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	BRIEN	NURSING	Tout le nursing de Brien	CN=Tout le nursing de Brien,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	BRIEN	OTHER	Tout le PATO de Brien	CN=Tout le PATO de Brien,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	BRIEN	PARAMEDICAL	Tout le PATO de Brien	CN=Tout le PATO de Brien,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	BRIEN	TECHNIQUE	Tout le PATO de Brien	CN=Tout le PATO de Brien,OU=Distribution Group,OU=Exchange,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	HORTA	ADMINISTRATIF	Tout le PATO de Horta	CN=Tout le PATO de Horta,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	HORTA	MEDICAL	Tous les medecins de Horta	CN=Tous les medecins de Horta,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	HORTA	NURSING	Tout le nursing de Horta	CN=Tout le nursing de Horta,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	HORTA	OTHER	Tout le PATO de Horta	CN=Tout le PATO de Horta,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	HORTA	PARAMEDICAL	Tout le PATO de Horta	CN=Tout le PATO de Horta,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	HORTA	TECHNIQUE	Tout le PATO de Horta	CN=Tout le PATO de Horta,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	 	MEDICAL	OSIRIS - MVSL - Medical	CN=OSIRIS - MVSL - Medical,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	 	MEDICAL	Tous les medecins de Brugmann	CN=Tous les medecins de Brugmann,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	 	MEDICAL	Wireless Users	CN=Wireless Users,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	 	NURSING	OSIRIS - MVSL - Nursing	CN=OSIRIS - MVSL - Nursing,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+CHU-BRUGMANN	 	PARAMEDICAL	OSIRIS - MVSL - Paramedical	CN=OSIRIS - MVSL - Paramedical,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	ADMINISTRATIF	Tout le PATO de l Huderf	CN=Tout le PATO de l Huderf,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	MEDICAL	OSIRIS - MVSL - Medical	CN=OSIRIS - MVSL - Medical,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	MEDICAL	Tous les medecins de l Huderf	CN=Tous les medecins de l Huderf,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	MEDICAL	Wireless Users	CN=Wireless Users,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	NURSING	OSIRIS - MVSL - Nursing	CN=OSIRIS - MVSL - Nursing,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	NURSING	Tout le nursing de l Huderf	CN=Tout le nursing de l Huderf,OU=Security,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	OTHER	Tout le PATO de l Huderf	CN=Tout le PATO de l Huderf,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	PARAMEDICAL	OSIRIS - MVSL - Paramedical	CN=OSIRIS - MVSL - Paramedical,OU=MedicalViewerSilverLight,OU=Applications,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	PARAMEDICAL	Tout le PATO de l Huderf	CN=Tout le PATO de l Huderf,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be
+HUDERF	 	TECHNIQUE	Tout le PATO de l Huderf	CN=Tout le PATO de l Huderf,OU=Distribution,OU=Groups,OU=OSIRIS,DC=chu-brugmann,DC=be

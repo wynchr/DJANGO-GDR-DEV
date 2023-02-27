@@ -1,0 +1,158 @@
+@import "reset.css";
+/* ====================================================================================================================
+.DESCRIPTION
+    Style Sheet for GDR Project
+
+.FUNCTIONALITY
+    Version	Date		Who	Comment
+    -------	----		---	-------
+    1.0		01/01/2023  CWY	Initial Version
+
+.COMMENTS
+    .
+====================================================================================================================*/
+
+/* ------------------------------------
+# START CONFIGURATION
+-------------------------------------*/
+html,
+body {
+    height: 100%;
+    margin: 0;
+    max-width: 100%;
+}
+/* ------------------------------------
+# FOOTER
+-------------------------------------*/
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -100px;
+}
+
+#footer,
+.push {
+    height: 50px;
+}
+/* ------------------------------------
+# LOGIN
+-------------------------------------*/
+#card-login {
+    width: 450px;
+}
+.login-border {
+    border-top: .4rem solid blue;
+    border-bottom: .4rem solid blue;
+    border-radius: 10px;
+}
+#btn-enter {
+    border-radius: 15px;
+    font-size: 16px;
+}
+/* ------------------------------------
+# CUSTOM PAGINATION
+-------------------------------------*/
+.page-item.active .page-link {
+    columns: #fff;
+    background-color: #6C757d;
+    border: 1px solid #6C757d;
+}
+.pagination > li > a {
+    background-color: white;
+    color:  #6C757d;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > span > a:focus,
+.pagination > span > a:hover {
+    color: #111;
+    background-color: #D3D3D3;
+    border: 1px solid #6C757d;
+    box-shadow: none;
+}
+/* ------------------------------------
+# DATATABLES
+-------------------------------------*/
+/* Pagination */
+.dataTables_paginate {
+    margin-top: -40px !important;
+}
+/* Input search */
+.dataTables_filter {
+    display: none;
+}
+/* Show entries */
+.dataTables_length {
+    float: right !important;
+    margin-top: 10px !important;
+}
+/* Input search */
+.dataTables_show {
+    display: none;
+}
+/* Group buttons */
+.dt-buttons {
+   margin-bottom: 10px !important;
+}
+thead input {
+    width: 100%;
+    text-align: center;
+}
+/* ------------------------------------
+# BOOTSTRAP BLUE THEME
+-------------------------------------*/
+.forms-control:focus {
+    border-color: darkblue;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* Checkbox blue theme (show/hide password) */
+.form-check-input:checked {
+    background-color: #8abaae;
+    border: blue !important;
+    box-shadow: 0 0 8px rgba(1, 152, 117, 0.4) !important;
+}
+.form-check-input {
+    border: blue !important;
+    box-shadow: 0 0 8px rgba(1, 152, 117, 0.4) !important;
+}
+.form-label {
+    color: blue;
+    /*border: blue !important;*/
+    /*box-shadow: 0 0 8px rgba(1, 152, 117, 0.4) !important;*/
+}
+/* ------------------------------------
+# OTHERS
+-------------------------------------*/
+/* Labels of inputs */
+.side-label {
+    width: 45px;
+}
+/* Buttons for modal */
+.btn-modal {
+    width: 60px;
+}
+/* ------------------------------------
+# TESTS CWY
+-------------------------------------*/
+.errorlist {
+    color: red;
+}
+.mylabel {
+    color: royalblue;
+    width: 250px;
+    /*height: 1px;*/
+}
+.mylabelBlackReadOnly {
+    color: black;
+    width: 250px;
+    /*height: 1px;*/
+}
+.mylabelWhiteReadOnly {
+    color: ghostwhite;
+    width: 250px;
+    /*height: 1px;*/
+}
+/* ------------------------------------
+# $$$
+-------------------------------------*/
+

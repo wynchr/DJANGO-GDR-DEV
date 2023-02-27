@@ -1,0 +1,25 @@
+{% extends './base.html' %}
+<!-- Index page for REFID Application-->
+{% block title %}
+Index
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">REFID - Référentiel Identité (Index)</p></h1>
+    </div>
+  <p>Liste des fonctionnalités</p>
+
+  <div class="list-group">
+    <a href="{% url 'refid-provad-list-view' %}" class="list-group-item list-group-item-action list-group-item-primary">REFID Application</a>
+    <br>
+    <a href="{% url 'refid-provinitad-list-view' %}" class="list-group-item list-group-item-action list-group-item-primary">REFID Reprise Initialisation</a>
+    <br>
+  </div>
+
+</div>
+
+{% endblock %}

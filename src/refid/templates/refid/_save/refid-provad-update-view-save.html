@@ -1,0 +1,216 @@
+{% extends './base.html' %}
+{% load crispy_forms_tags %}
+
+<!--  ProvAd Create View page for REFID Application-->
+
+{% block title %}User Create/Update{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    {% if mode == "update" %}
+    <h4 class="text-center" style="color:Blue">
+        {{ user.sn }}, {{ user.givenname }} ({{ user.samaccountname }} @ {{ user.company }})
+    </h4>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+
+        <!--  Nav tabs-->
+        <ul class="nav nav-tabs nav-pills nav-fill nav-justified flex-column flex-sm-row" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#menu-identite">IDENTITE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu-securite">SECURITE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu-distribution">DISTRIBUTION</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+
+            <!-- Tab panes IDENTITE -->
+            <div id="menu-identite" class="container tab-pane active"><br>
+
+
+                <!--PROFIL ==================================================-->
+
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- PROFIL DE L'UTILISATEUR ----------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        PROFIL UTILISATEUR - [HUMAN RESOURCE PROFILE - Legal Identity Information]
+                    </h6>
+                    <!--SIGNALETIQUE part 1-->
+                    <div class="row">
+                        <div class="col-6">{{ form.sn|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.givenname|as_crispy_field }}</div>
+                    </div>
+                    <!--SIGNALETIQUE part 2-->
+                    <div class="row">
+                        <div class="col-4">{{ form.preferredlanguage|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.gender|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.birthday|as_crispy_field }}</div>
+                    </div>
+                    <!--PROFIL HÔPITAL-->
+                    <div class="row">
+                        <div class="col-4">{{ form.company|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.physicaldeliveryofficename|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.department|as_crispy_field }}</div>
+                    </div>
+                    <!--PROFIL EMPLOYEE-->
+                    <div class="row">
+                        <div class="col-4">{{ form.businesscategory|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.employeetype|as_crispy_field }}</div>
+                    </div>
+                    <!--AUTRES IDENTIFIANTS-->
+                    <div class="row">
+                        <div class="col-4">{{ form.extensionattribute1|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.employeenumber|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.extensionattribute11|as_crispy_field }}</div>
+                    </div>
+                    <!--TELEPHONIE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.telephonenumber|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.pager|as_crispy_field }}</div>
+                    </div>
+                </div>
+
+                <!--COMPTE AD/EXCHANGE ==================================================-->
+
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- INFORMATION SUR LE COMPTE UTILISATEUR (AD/EXCHANGE) ------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        COMPTE UTILISATEUR - [CHU BRUGMANN / HUDERF - Network Account Information]
+                    </h6>
+                    <!--IDENTIFIANT UNIQUE DE L'UTILISATEUR-->
+                    <div class="row">
+                        <div class="col-6">{{ form.samaccountname|as_crispy_field }}</div>
+                        <!--                        <div class="col-6">{ form.password|as_crispy_field }}</div>-->
+                    </div>
+                    <!--COMPTE AD-->
+                    <div class="row">
+                        <div class="col-3">{{ form.enableaccountexpires|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.accountexpires|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.changepasswordatlogon|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.enabled|as_crispy_field }}</div>
+                    </div>
+                    <!--COMPTE EXCHANGE-->
+                    <div class="row">
+                        <div class="col-6">{{ form.enablemail|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.mail|as_crispy_field }}</div>
+                    </div>
+                    <!--ZONES D'INFORMATION-->
+                    <div class="col-12">
+                        {{ form.info|as_crispy_field }}
+                        {{ form.description|as_crispy_field }}
+                    </div>
+                    <!--METADATA-->
+                    <div class="col-12">
+                        {{ form.metadata|as_crispy_field }}
+                    </div>
+                    <!--GROUPES DE SECURITE-->
+                    <div class="col-12">
+                        {{ form.groups|as_crispy_field }}
+                    </div>
+                    <!--LISTES DE DISTRIBUTION-->
+                    <div class="col-12">
+                        {{ form.distributionlist|as_crispy_field }}
+                    </div>
+                </div>
+
+                <!--SYSTEME ==================================================-->
+
+                {% if request.user.is_staff %}
+                <!--            { if request.user|has_group:"Operators" %}-->
+                <div class="card border border-dark p-3 mb-3">
+                    <!-- INFORMATION SUR LE SYSTEME DE PROVISIONNEMENT ----------------------------------------------------->
+                    <h6 class="bg-secondary text-white py-2 text-center text-uppercase">
+                        SYSTEME - [REFID - Identity Lifecycle System]
+                    </h6>
+                    <!--ENVIRONMENT DE TRAVAIL - ACTION DEMANDEE-->
+                    <div class="row">
+                        <div class="col-3">{{ form.env|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.org|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.extensionattribute15|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.actiontype|as_crispy_field }}</div>
+                    </div>
+                    <!--AUTRES INFORMATIONS POUR L'AD-->
+                    <div class="row">
+                        <div class="col-6">{{ form.homedir|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.homedrive|as_crispy_field }}</div>
+                    </div>
+                    <!--INFORMATIONS SUR L'ENCODAGE APPLICATIF-->
+                    <div class="row">
+                        <div class="col-3">{{ form.usercre|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.datecre|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.userupd|as_crispy_field }}</div>
+                        <div class="col-3">{{ form.dateupd|as_crispy_field }}</div>
+                    </div>
+                    <!--STATUT D'INTEGRATION AD-->
+                    <div class="row">
+                        <div class="col-4">{{ form.flagsyncad|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.datesyncad|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.msgad|as_crispy_field }}</div>
+                    </div>
+                    <!--STATUT D'INTEGRATION EXCHANGE-->
+                    <div class="row">
+                        <div class="col-4">{{ form.flagsyncexchange|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.datesyncexchange|as_crispy_field }}</div>
+                        <div class="col-4">{{ form.msgexchange|as_crispy_field }}</div>
+                    </div>
+                    <!--AD OBJECTS KEYS-->
+                    <div class="row">
+                        <div class="col-6">{{ form.objectsid|as_crispy_field }}</div>
+                        <div class="col-6">{{ form.objectguid|as_crispy_field }}</div>
+                    </div>
+                </div>
+
+                <!--BUTTONS part 1 ==================================================-->
+
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-success btn-center" value="{{ submit_text }}">
+                    <a href="{% url 'refid-provad-list-view' %}" class="btn btn-error btn-danger">Annuler</a>
+               </div>
+
+                <!--
+                       &lt;!&ndash;BUTTONS part 2 ==================================================&ndash;&gt;
+
+                       <div class="btn-group">
+                           <a href="#" class="btn btn-error btn-primary">Reset Password</a>
+                           <a href="#" class="btn btn-error btn-info">Send PDF Mail</a>
+                       </div>
+
+               -->
+
+                {% endif %}
+
+            </div>  <!-- endtab IDENTITE -->
+
+            <!-- Tab panes SECURITE -->
+            <div id="menu-securite" class="container tab-pane active"><br>
+
+            </div>  <!-- endtab SECURITE-->
+
+            <!-- Tab panes DISTRIBUTION -->
+            <div id="menu-distribution" class="container tab-pane active"><br>
+
+            </div>  <!-- endtab DISTRIBUTION-->
+
+        </div> <!-- endtab-content -->
+
+
+    </form>
+
+    <br><br><br>
+</div>  <!--container-->
+
+{% endblock %}

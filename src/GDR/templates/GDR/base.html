@@ -1,0 +1,30 @@
+{% load static %}
+<!--  BASE page for GDR Project-->
+<html lang="en">
+<head>
+    {% include './includes/meta.html' %}
+    {% include './includes/link.html' %}
+    <title>
+        GDR |
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+</head>
+<body class="d-flex flex-column">
+
+    {% include './includes/header.html' %}
+
+    <div class="wrapper">
+
+        {% block content %}
+
+        {% endblock content%}
+
+    </div>
+
+    {% include './includes/footer.html' %}
+    {% include './includes/scripts.html' %}
+
+</body>
+</html>

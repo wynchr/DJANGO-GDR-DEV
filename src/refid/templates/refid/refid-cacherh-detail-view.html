@@ -1,0 +1,142 @@
+{% extends './base.html' %}
+<!-- Monitor Detail View page for REFID Application-->
+{% block title %}
+Cache RH Detail
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid mt-3">
+    <div class="w3-panel w3-blue-grey w3-card-4">
+        <h1><p class="text-center">{{ title }}</p></h1>
+    </div>
+
+    <h3>IDENTITY : {{ user.v100_rh_nom }}, {{ user.v100_rh_prenom }} ({{ user.v100_rh_matricule }})</h3>
+
+    <h5>HUMAN RESOURCE PROFILE - HR-ARNO</h5>
+    <table class="table table-striped table-hover compact nowrap" style="width:100%;font-size:90%;">
+        <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>RH Name</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>matricule</td>
+            <td>v100_rh_matricule</td>
+            <td>{{ user.v100_rh_matricule }}</td>
+        </tr>
+        <tr>
+            <td>nom</td>
+            <td>v100_rh_nom</td>
+            <td>{{ user.v100_rh_nom }}</td>
+        </tr>
+        <tr>
+            <td>prenom</td>
+            <td>v100_rh_prenom</td>
+            <td>{{ user.v100_rh_prenom }}</td>
+        </tr>
+        <tr>
+            <td>autres_prenoms</td>
+            <td>v100_rh_autres_prenoms</td>
+            <td>{{ user.v100_rh_autres_prenoms }}</td>
+        </tr>
+        <tr>
+            <td>sexe</td>
+            <td>v100_rh_sexe</td>
+            <td>{{ user.v100_rh_sexe }}</td>
+        </tr>
+        <tr>
+            <td>registre_national</td>
+            <td>v100_rh_registre_national</td>
+            <td>{{ user.v100_rh_registre_national }}</td>
+        </tr>
+        <tr>
+            <td>date_naissance</td>
+            <td>v100_rh_date_naissance</td>
+            <td>{{ user.v100_rh_date_naissance | slice:":10"}}</td>
+        </tr>
+        <tr>
+            <td>date_deces</td>
+            <td>v100_rh_date_deces</td>
+            <td>{{ user.employeetype }}</td>
+        </tr>
+        <tr>
+            <td>langue</td>
+            <td>v100_rh_langue</td>
+            <td>{{ user.v100_rh_langue }}</td>
+        </tr>
+        <tr>
+            <td>regime_linguistique</td>
+            <td>v100_rh_regime_linguistique</td>
+            <td>{{ user.v100_rh_regime_linguistique }}</td>
+        </tr>
+        <tr>
+            <td>num_carte_id</td>
+            <td>v100_rh_num_carte_id</td>
+            <td>{{ user.v100_rh_num_carte_id }}</td>
+        </tr>
+        <tr>
+            <td>date_debut_contrat</td>
+            <td>v300_rh_date_debut_contrat</td>
+            <td>{{ user.v300_rh_date_debut_contrat | slice:":10"}}</td>
+        </tr>
+        <tr>
+            <td>date_fin_contrat</td>
+            <td>v300_rh_date_fin_contrat</td>
+            <td>{{ user.v300_rh_date_fin_contrat | slice:":10"}}</td>
+        </tr>
+        <tr>
+            <td>statut_contrat</td>
+            <td>v100_rh_statut_contrat</td>
+            <td>{{ user.v100_rh_statut_contrat }}</td>
+        </tr>
+        <tr>
+            <td>code_societe</td>
+            <td>v100_rh_statut_contrat</td>
+            <td>{{ user.v200_contrat_code_societe }}</td>
+        </tr>
+        <tr>
+            <td>code_profil</td>
+            <td>v955_contrat_code_profil</td>
+            <td>{{ user.v955_contrat_code_profil }}</td>
+        </tr>
+        <tr>
+            <td>profil</td>
+            <td>v955_contrat_profil_fr</td>
+            <td>{{ user.v955_contrat_profil_fr }}</td>
+        </tr>
+        <tr>
+            <td>ca_qualification</td>
+            <td>v600_ca_ventil_qualification</td>
+            <td>{{ user.v600_ca_ventil_qualification }}</td>
+        </tr>
+        <tr>
+            <td>ca_vcode</td>
+            <td>v600_ca_ventil_code</td>
+            <td>{{ user.v600_ca_ventil_code }}</td>
+        </tr>
+        <tr>
+            <td>ca_lib</td>
+            <td>v600_ca_ventil_fr</td>
+            <td>{{ user.v600_ca_ventil_fr }}</td>
+        </tr>
+        <tr>
+            <td>rh_inami_11</td>
+            <td>v125_rh_inami_11</td>
+            <td>{{ user.v125_rh_inami_11 }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <br><br><br><br>
+
+
+</div>
+
+
+{% endblock %}

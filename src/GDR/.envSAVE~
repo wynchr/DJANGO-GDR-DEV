@@ -1,0 +1,13 @@
+ENV='DEV'
+
+SECRET_KEY='django-insecure-aht=k3=8r1h3j!gu=&#q-+_7w(^)n5r!@(z)ubm5uzq_x=bxqe'
+DEBUG=True
+ALLOWED_HOSTS='127.0.0.1'
+
+DB_ENGINE='django.db.backends.oracle'
+DB_NAME='INTRDV'
+DB_HOST='polonium.chu-brugmann.be'
+DB_PORT='1521'
+DB_SERVICE_NAME='INTRDV.chu-brugmann.be'
+DB_USER='sa'
+DB_PASSWORD='flipper'

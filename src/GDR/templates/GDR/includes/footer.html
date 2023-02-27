@@ -1,0 +1,28 @@
+{% load static %}
+<!-- FOOTER INCLUDE page for GDR Project-->
+<footer>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom" style="font-size:70%;">
+
+        <div class="container-fluid" >
+
+            <div class="col-sm-3" style="color:white;text-align:left;">
+                <a href="http://intranet.chu-brugmann.be/intranet/default.php" target="_blank" style="color:white;" >Intranet</a>
+                <a href="http://intranet.chu-brugmann.be/intranet/helpdeskuser/menuhelpdesk.asp"  style="color:white;" target="_blank" > - Helpdesk</a>
+                <a href="http://intranet.chu-brugmann.be/intranet/clic/contact.asp"  style="color:white;" target="_blank" > - Webmaster </a>
+            </div>
+
+            <div class="col-sm-3" style="color:white;text-align: center;">
+                <p>{{ info.application}} {{ info.version}} ({{ info.environment}})</p>
+            </div>
+
+            <div class="col-sm-3" style="color:white;text-align: center;">
+                <p>{{ info.user}}@{{ info.machine}}</p>
+            </div>
+
+            <div class="col-sm-3" style="color:white;text-align: right;">
+                <p>{% now "Y-m-d H:m:s" %}</p>
+            </div>
+
+        </div>
+    </nav>
+</footer>

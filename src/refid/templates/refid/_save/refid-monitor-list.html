@@ -1,0 +1,227 @@
+{% extends './base.html' %}
+
+{% block jquery %}
+
+
+<script>
+  // TABLE N1 Normal OK
+    $(document).ready(function() {
+        $('#tableN1').DataTable( {
+          searching : true,
+          paging :   true,
+          ordering : true,
+          colReorder: true,
+          info :     true,
+          pageLength : 10,
+          //responsive: true,
+          scrollX : true,
+          scrollY : false,
+          scrollCollapse : true,
+          autoWidth : true,
+          lengthChange : true,
+          order : [[9,"desc"]],
+          fixedColumns: true,
+          fixedColumns: { leftColumns: 1 },
+        } );
+    } );
+
+    // TABLE FC1 Fix Column
+    $(document).ready(function() {
+      var table = $('#tableFC1').DataTable( {
+          scrollY:        "300px",
+          scrollX:        true,
+          scrollCollapse: true,
+          paging:         false,
+          fixedColumns:   true
+      } );
+    } );
+
+  // TABLE D1 Detail view Modal
+  $(document).ready(function() {
+    $('#tableD1').DataTable( {
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        var data = row.data();
+                        return 'Details for '+data[0]+' '+data[1]+', '+data[2];
+                    }
+                } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                    tableClass: 'table'
+                } )
+            }
+        }
+    } );
+  } );
+
+  // TABLE E1 Export Buttons
+  $(document).ready(function() {
+    $('#tableE1').DataTable( {
+      dom: 'Bfrtip',
+      buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5'
+      ],
+    } );
+  } );
+
+  // TABLE SP1 Search Panel
+  $(document).ready(function() {
+    var table = $('#tableSP1').DataTable({
+        searchPanes: true
+    });
+    table.searchPanes.container().prependTo(table.table().container());
+    table.searchPanes.resizePanes();
+  });
+
+  // TABLE ND1 Normal + Detail view Modal
+  $(document).ready(function() {
+    $('#tableND1').DataTable( {
+      responsive: {
+          details: {
+              display: $.fn.dataTable.Responsive.display.modal( {
+                  header: function ( row ) {
+                      var data = row.data();
+                      return 'Details for '+data[0]+' '+data[1]+', '+data[2];
+                  }
+              } ),
+              renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                  tableClass: 'table'
+              } )
+          }
+      },
+      searching : true,
+      paging :   true,
+      ordering : true,
+      colReorder: true,
+      info :     true,
+      pageLength : 10,
+      //responsive: true,
+      scrollX : true,
+      scrollY : false,
+      scrollCollapse : true,
+      autoWidth : true,
+      lengthChange : true,
+      order : [[9,"desc"]],
+      fixedColumns: true,
+      fixedColumns: { leftColumns: 1 },
+    } );
+  } );
+
+  // TABLE NE1 Normal + Export Buttons
+  $(document).ready(function() {
+    $('#tableNE1').DataTable( {
+      dom: 'Bfrtip',
+      buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5'
+      ],
+      searching : true,
+      paging :   true,
+      ordering : true,
+      info :     true,
+      //select: true,
+      pageLength : 10,
+      //responsive: true,
+      scrollX : "400px",
+      //scrollY : "400px",
+      //scrollCollapse : true,
+      //autoWidth : false,
+      //lengthChange : true,
+      order : [[9,"desc"]],
+      //fixedColumns: true,
+      //fixedColumns: { leftColumns: 1 },
+    } );
+  } );
+
+</script>  
+
+{% endblock %}
+
+{% block title %}
+REFID Monitor 
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+  <div class="w3-panel w3-light-blue w3-card-4">
+    <h1><p class="text-center">Monitoring</p></h1>
+  </div>
+
+  <p>Statut des transactions d'intégration AD/Exchange</p> 
+
+  N1
+  <table id="tableN1" class="table table-hover table-striped display compact nowrap" style="width:100%;font-size:75%;">
+  <thead>
+    <tr>
+      <th>UserID</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+
+      <th>Hôpital</th>
+      <th>Site</th>
+      {% comment %} <th>businesscategory</th> {% endcomment %}
+      <th>Type</th>
+      {% comment %} <th>department</th> {% endcomment %}
+
+      {% comment %} <th>enableexpires</th> {% endcomment %}
+      <th>Expiration</th>
+      <th>Actif</th>
+
+      <th>UserUpd</th>
+      <th>DateUpd</th>
+
+      <th>DateAD</th>
+      <th>SyncAD</th>
+
+      <th>DateEXCH</th>
+      <th>SyncEXCH</th>
+    </tr>
+  </thead>      
+  <tbody>
+  {% if monitor_list %}
+    {% for user in monitor_list %}
+       {% comment %} <a href="/refid/refid-monitor-detail/{{ user.samaccountname}}">{{ user.samaccountname }} : {{ user.sn }}, {{ user.givenname }}</a> {% endcomment %}
+       <tr>
+        <td><a href="/refid/refid-monitor-detail/{{ user.samaccountname}}">{{ user.samaccountname }}</td>
+        <td>{{ user.sn }}</td>
+        <td>{{ user.givenname }}</td>
+
+        <td>{{ user.company }}</td>
+        <td>{{ user.physicaldeliveryofficename }}</td>
+        {% comment %} <td>{{ user.businesscategory }}</td> {% endcomment %}
+        <td>{{ user.employeetype }}</td>
+        {% comment %} <td>{{ user.department }}</td> {% endcomment %}
+
+        {% comment %} <td>{{ user.enableaccountexpires }}</td> {% endcomment %}
+        <td>{{ user.accountexpires | slice:":10"}}</td>
+        <td>{{ user.enabled }}</td>
+
+        <td>{{ user.userupd }}</td>
+        <td>{{ user.dateupd }}</td>
+
+        <td>{{ user.datesyncad }}</td>
+        <td>{{ user.flagsyncad }}</td>
+
+        <td>{{ user.datesyncexchange }}</td>
+        <td>{{ user.flagsyncexchange }}</td>
+      </tr>
+    {% endfor %}
+    {% else %}
+        <p>No user are available.</p>
+    {% endif %}
+    </tbody>
+  </table>
+
+</div>
+
+
+
+{% endblock %}
