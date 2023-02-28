@@ -36,7 +36,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 def job():
     print('Start run_all_scripts')
 
-    os.system("python run_all_scripts_REPRISE.py")
+    os.system("python run_all_scripts_LIVE.py")
 
     print('Stop run_all_scripts')
 
