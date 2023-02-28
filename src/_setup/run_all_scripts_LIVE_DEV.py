@@ -151,8 +151,8 @@ os.system("python sync_REFID_IOP_CACHE_EVIDIAN.py %s" % filename)
 # ========================================================================
 
 # Reload PROVINIT AD (no more in PRODUCTION)
-os.system("python create_REFID_IOP_PROVINIT_AD.py %s" % filename)
-os.system("python sync_REFID_IOP_PROVINIT_AD.py %s" % filename)
+# os.system("python create_REFID_IOP_PROVINIT_AD.py %s" % filename)
+# os.system("python sync_REFID_IOP_PROVINIT_AD.py %s" % filename)
 
 # ========================================================================
 # PROV LIVE

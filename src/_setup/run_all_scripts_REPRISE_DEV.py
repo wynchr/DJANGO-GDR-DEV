@@ -185,9 +185,9 @@ os.system("python create_REFID_IOP_PROVMIRROR_AD.py %s" % filename)
 # ========================================================================
 
 # Create REFADGROUPS/REFERENCE/SECURITY/SETTINGS  (no more in PRODUCTION)
-os.system("python create_REFID_IOP_REFAD_GROUPS_RULES.py %s" % filename)
-os.system("python create_REFID_IOP_REFADGROUPS.py %s" % filename)
-os.system("python sync_REFID_IOP_REFADGROUPS.py %s" % filename)
+# os.system("python create_REFID_IOP_REFAD_GROUPS_RULES.py %s" % filename)
+# os.system("python create_REFID_IOP_REFADGROUPS.py %s" % filename)
+# os.system("python sync_REFID_IOP_REFADGROUPS.py %s" % filename)
 # os.system("python create_REFID_IOP_REFADGROUPS_CWY.py %s" % filename)
 # os.system("python sync_REFID_IOP_REFADGROUPS_CWY.py %s" % filename)
 
