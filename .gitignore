@@ -139,3 +139,10 @@ Thumbs.db
 src/GDR/config.py~
 src/utils/config/config.py
 src/utils/config/config.py
+.idea/vcs.xml
+.idea/DJANGO-GDR-DEV.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
